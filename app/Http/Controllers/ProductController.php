@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Product;
+use App\Models\Reference;
 use App\Models\Category;
+use App\Models\Provider;
 
 class ProductController extends Controller
 {
@@ -15,14 +17,20 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::join('categories', 'products.category', '=', 'categories.id')
-            ->select('products.*', 'categories.name as category')
+        $products = Product::join('references', 'products.reference', '=', 'references.id')
+            ->join('categories', 'products.category', '=', 'categories.id')
+            ->join('providers', 'products.provider', '=', 'providers.id')
+            ->select('products.*', 'references.name as reference', 'categories.name as category', 'providers.first_name', 'providers.last_name')
             ->where('products.state', 1)
             ->get();
 
+        $references = Reference::where('state', 1)->get();
+
         $categories = Category::where('state', 1)->get();
 
-        return view('modules.products.index', compact('products', 'categories'));
+        $providers = Provider::where('state', 1)->get();
+
+        return view('modules.products.index', compact('products', 'references', 'categories', 'providers'));
     }
 
     /**
@@ -43,6 +51,7 @@ class ProductController extends Controller
             'name' => 'required',
             'reference' => 'required',
             'category' => 'required',
+            'provider' => 'required',
             'service' => 'required',
             'existence' => 'required|numeric',
             'price' => 'required|numeric',
@@ -59,6 +68,8 @@ class ProductController extends Controller
             'reference.required' => 'La referencia es obligatoria.',
 
             'category.required' => 'La categoría es obligatoria.',
+
+            'provider.required' => 'El proveedor es obligatorio.',
 
             'service.required' => 'El servicio es obligatorio.',
 
@@ -87,6 +98,7 @@ class ProductController extends Controller
         $products->name = $request->name;
         $products->reference = $request->reference;
         $products->category = $request->category;
+        $products->provider = $request->provider;
         $products->service = $request->service;
         $products->existence = $request->existence;
         $products->price = $request->price;

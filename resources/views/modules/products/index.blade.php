@@ -107,6 +107,10 @@
                                 <dd class="overflow-hidden w-28 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">{{ $product->category }}</dd>
                             </div>
                             <div class="flex justify-between gap-x-px py-3 border-t-2 border-gray-100">
+                                <dt class="text-gray-500">Proveedor</dt>
+                                <dd class="overflow-hidden w-28 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">{{ $product->first_name }} {{ $product->last_name }}</dd>
+                            </div>
+                            <div class="flex justify-between gap-x-px py-3 border-t-2 border-gray-100">
                                 <dt class="text-gray-500">Servicio</dt>
                                 <dd class="overflow-hidden w-28 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">
                                     @if ($product->service == 1)
@@ -125,11 +129,15 @@
                                 <dd class="overflow-hidden w-28 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">{{ $product->description }}</dd>
                             </div>
                             <div class="flex justify-between items-center gap-x-px py-3 border-t-2 border-gray-100">
-                                <dt class="text-gray-500">Precio de venta</dt>
+                                <dt class="text-gray-500">Precio base</dt>
                                 <dd class="flex items-center gap-x-2">
                                     <div class="py-1 px-2 text-base font-medium text-blue-700  bg-blue-50 rounded-lg ring-1 ring-inset ring-blue-700/10">{{ $product->discount }}%</div>
                                     <div class="overflow-hidden w-16 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">${{ number_format($product->price, 0, '.', '.') }}</div>
                                 </dd>
+                            </div>
+                            <div class="flex justify-between gap-x-px py-3 border-t-2 border-gray-100">
+                                <dt class="text-gray-500">Precio final</dt>
+                                <dd class="overflow-hidden w-28 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">${{ number_format($product->price - $product->price * ($product->discount / 100), 0, '.', '.') }}</dd>
                             </div>
                         </dl>
                     </li>

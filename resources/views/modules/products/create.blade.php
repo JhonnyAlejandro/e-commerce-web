@@ -13,7 +13,7 @@
                     @endforeach
                 </x-alert>
             @endif
-            <div class="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-6">
+            <div x-data="{ price: null, discount: null }" class="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-6">
                 <div class="md:col-span-1">
                     <x-label for="code" value="{{ __('Código') }}" />
                     <x-input id="code" class="block mt-1 w-full" type="text" name="code" required />
@@ -22,16 +22,30 @@
                     <x-label for="name" value="{{ __('Nombre') }}" />
                     <x-input id="name" class="block mt-1 w-full" type="text" name="name" required />
                 </div>
-                <div class="md:col-span-3">
+                <div class="md:col-span-2">
                     <x-label for="reference" value="{{ __('Referencia') }}" />
-                    <x-input id="reference" class="block mt-1 w-full" type="text" name="reference" required />
+                    <x-select id="reference" class="block mt-1 w-full" name="reference" required>
+                        <option value="" disabled selected hidden>Seleccione una categoría</option>
+                        @foreach ($references as $reference)
+                            <option value="{{ $reference->id }}">{{ $reference->name }}</option>
+                        @endforeach
+                    </x-select>
                 </div>
-                <div class="md:col-span-3">
+                <div class="md:col-span-2">
                     <x-label for="category" value="{{ __('Categoría') }}" />
                     <x-select id="category" class="block mt-1 w-full" name="category" required>
                         <option value="" disabled selected hidden>Seleccione una categoría</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </x-select>
+                </div>
+                <div class="md:col-span-2">
+                    <x-label for="provider" value="{{ __('Proveedor') }}" />
+                    <x-select id="provider" class="block mt-1 w-full" name="provider" required>
+                        <option value="" disabled selected hidden>Seleccione un proveedor</option>
+                        @foreach ($providers as $provider)
+                            <option value="{{ $provider->id }}">{{ $provider->first_name }} {{ $provider->last_name }}</option>
                         @endforeach
                     </x-select>
                 </div>
@@ -48,12 +62,15 @@
                     <x-input id="existence" class="block mt-1 w-full" type="text" name="existence" required />
                 </div>
                 <div class="md:col-span-2">
-                    <x-label for="price" value="{{ __('Precio de venta') }}" />
-                    <x-input id="price" class="block mt-1 w-full" type="text" name="price" required />
+                    <x-label for="price" value="{{ __('Precio base') }}" />
+                    <x-input x-model="price" id="price" class="block mt-1 w-full" type="text" name="price" required />
                 </div>
                 <div class="md:col-span-1">
                     <x-label for="discount" value="{{ __('Descuento') }}" />
-                    <x-input id="discount" class="block mt-1 w-full" type="text" name="discount" required />
+                    <x-input x-model="discount" id="discount" class="block mt-1 w-full" type="text" name="discount" required />
+                </div>
+                <div class="md:col-span-full">
+                    <p class="text-lg font-semibold text-gray-600">Precio final: <span x-text="(price - (price * discount / 100)).toLocaleString()"></span></p>
                 </div>
                 <div class="md:col-span-full">
                     <x-label for="description" value="{{ __('Descripción') }}" />

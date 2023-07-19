@@ -14,7 +14,14 @@
             <div class="md:col-span-8 xl:col-span-7">
                 <h2 class="text-3xl font-semibold text-gray-900 md:pr-12">{{ $product->name }}</h2>
                 <section class="mt-3">
-                    <p class="text-2xl font-medium text-gray-900">${{ number_format($product->price, 0, '.', '.') }}</p>
+                    @if ($product->discount > 0)
+                        <div class="flex items-center mt-1">
+                            <p class="text-lg font-medium text-gray-500 line-through">${{ number_format($product->price, 0, '.', '.') }}</p>
+                            <p class="ml-2 text-2xl font-medium text-gray-900">${{ number_format($product->price - $product->price * ($product->discount / 100), 0, '.', '.') }}</p>
+                        </div>
+                    @else
+                        <p class="text-2xl font-medium text-gray-900">${{ number_format($product->price, 0, '.', '.') }}</p>
+                    @endif
                     <p class="mt-6 text-lg text-gray-700">{!! nl2br($product->description) !!}</p>
                 </section>
                 <section class="mt-6">
