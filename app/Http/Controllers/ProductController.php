@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -14,9 +15,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::where('state', 1)->get();
+        $products = Product::join('categories', 'products.category', '=', 'categories.id')
+            ->select('products.*', 'categories.name as category')
+            ->where('products.state', 1)
+            ->get();
 
-        return view('modules.products.index', compact('products'));
+        $categories = Category::where('state', 1)->get();
+
+        return view('modules.products.index', compact('products', 'categories'));
     }
 
     /**

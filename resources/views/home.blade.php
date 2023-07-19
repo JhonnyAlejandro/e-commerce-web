@@ -100,12 +100,19 @@
                         </h3>
                         <p class="mt-1 text-md text-gray-500">
                             @if ($product->service == 1)
-                                Venta
+                                Venta - {{ $product->category }}
                             @elseif ($product->service == 2)
-                                Alquiler
+                                Alquiler - {{ $product->category }}
                             @endif
                         </p>
-                        <p class="mt-1 text-lg font-medium text-gray-900">${{ $product->price }}</p>
+                        @if ($product->discount > 0)
+                            <div class="flex items-center mt-1">
+                                <p class="text-lg font-medium text-gray-500 line-through">${{ number_format($product->price, 0, '.', '.') }}</p>
+                                <p class="ml-2 text-lg font-medium text-gray-900">${{ number_format($product->price - $product->price * ($product->discount / 100), 0, '.', '.') }}</p>
+                            </div>
+                        @else
+                            <p class="mt-1 text-lg font-medium text-gray-900 line-through">${{ number_format($product->price, 0, '.', '.') }}</p>
+                        @endif
                     </div>
                 @endforeach
             </div>

@@ -10,7 +10,11 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $products = Product::take(4)->get();
+        $products = $products = Product::join('categories', 'products.category', '=', 'categories.id')
+            ->select('products.*', 'categories.name as category')
+            ->where('products.state', 1)
+            ->take(4)
+            ->get();
 
         return view('home', compact('products'));
     }

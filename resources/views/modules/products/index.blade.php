@@ -16,10 +16,24 @@
             </template>
         </x-empty-states>
     @else
-        <div class="overflow-hidden bg-white shadow-lg rounded-lg">
+        <div x-data="{ searchFilter: '', categoryFilter: '' }" class="overflow-hidden bg-white shadow-lg rounded-lg">
             <div class="py-5 px-6 border-gray-200 border-b-2">
                 <x-section-heading>
-                    Productos registrados
+                    <x-slot name="title">Productos registrados</x-slot>
+                    <x-slot name="content">
+                        @foreach ($categories as $category)
+                            <li x-on:click="dropdowns = false; activeItem = {{ $category->id }}; categoryFilter = '{{ $category->name }}'" :class="{ 'bg-indigo-600 text-white': activeItem === {{ $category->id }} }" class="p-4 text-lg text-gray-900 hover:text-white hover:bg-indigo-600">
+                                <div class="flex justify-between items-center">
+                                    <p class="font-semibold">{{ $category->name }}</p>
+                                    <span x-show="activeItem === {{ $category->id }}" :class="{ 'text-white': activeItem === {{ $category->id }} }" class="text-indigo-600">
+                                        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </li>
+                        @endforeach
+                    </x-slot>
                 </x-section-heading>
             </div>
             <ul role="list" class="grid grid-cols-1 gap-x-6 gap-y-8 py-12 px-8 xl:grid-cols-3">
@@ -35,7 +49,7 @@
                     </template>
                 </div>
                 @foreach ($products as $product)
-                    <li class="overflow-hidden rounded-xl border-gray-200 border-2">
+                    <li x-show="searchProducts('{{ $product->name }}', searchFilter) && (categoryFilter === '' || categoryFilter === '{{ $product->category }}')" class="overflow-hidden rounded-xl border-gray-200 border-2">
                         <div class="flex items-center gap-x-4 p-6 bg-gray-50 border-gray-900/[0.05] border-b-2">
                             <img src="{{ asset($product->image) }}" class="flex-none w-12 h-12 bg-white object-cover object-center ring-1 ring-gray-900/[0.1] rounded-lg">
                             <h3 class="overflow-hidden w-full text-lg font-semibold leading-7 text-gray-900 whitespace-nowrap text-ellipsis">{{ $product->name }}</h3>
@@ -114,7 +128,7 @@
                                 <dt class="text-gray-500">Precio de venta</dt>
                                 <dd class="flex items-center gap-x-2">
                                     <div class="py-1 px-2 text-base font-medium text-blue-700  bg-blue-50 rounded-lg ring-1 ring-inset ring-blue-700/10">{{ $product->discount }}%</div>
-                                    <div class="overflow-hidden w-16 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">${{ $product->price }}</div>
+                                    <div class="overflow-hidden w-16 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">${{ number_format($product->price, 0, '.', '.') }}</div>
                                 </dd>
                             </div>
                         </dl>
@@ -123,4 +137,12 @@
             </ul>
         </div>
     @endif
+@stop
+
+@section('scripts')
+    <script>
+        function searchProducts(name, searchFilter) {
+            return name.toLowerCase().includes(searchFilter.toLowerCase());
+        }
+    </script>
 @stop

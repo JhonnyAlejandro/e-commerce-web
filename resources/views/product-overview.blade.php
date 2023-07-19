@@ -10,7 +10,14 @@
             </div>
             <div class="max-w-2xl mt-14 mx-auto md:mt-16 xl:col-span-3 xl:max-w-none xl:mt-0">
                 <h1 class="text-4xl font-semibold text-gray-900">{{ $product->name }}</h1>
-                <p class="mt-3 text-3xl font-medium text-gray-900">${{ $product->price }}</p>
+                @if ($product->discount > 0)
+                    <div class="flex mt-3">
+                        <p class="text-lg font-medium text-gray-500 line-through">${{ number_format($product->price, 0, '.', '.') }}</p>
+                        <p class="ml-2 text-3xl font-medium text-gray-900">${{ number_format($product->price - $product->price * ($product->discount / 100), 0, '.', '.') }}</p>
+                    </div>
+                @else
+                    <p class="mt-3 text-3xl font-medium text-gray-900">${{ number_format($product->price, 0, '.', '.') }}</p>
+                @endif
                 <p class="mt-6 text-lg text-gray-700">{!! nl2br($product->description) !!}</p>
                 <x-button class="inline-flex justify-center w-full mt-10 py-3 px-8 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
                     <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7 mr-3">

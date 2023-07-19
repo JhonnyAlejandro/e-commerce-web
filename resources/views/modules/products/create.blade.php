@@ -30,7 +30,9 @@
                     <x-label for="category" value="{{ __('Categoría') }}" />
                     <x-select id="category" class="block mt-1 w-full" name="category" required>
                         <option value="" disabled selected hidden>Seleccione una categoría</option>
-                        <option value="1"></option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </x-select>
                 </div>
                 <div class="md:col-span-2">

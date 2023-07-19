@@ -14,7 +14,7 @@
             <div class="md:col-span-8 xl:col-span-7">
                 <h2 class="text-3xl font-semibold text-gray-900 md:pr-12">{{ $product->name }}</h2>
                 <section class="mt-3">
-                    <p class="text-2xl font-medium text-gray-900">${{ $product->price }}</p>
+                    <p class="text-2xl font-medium text-gray-900">${{ number_format($product->price, 0, '.', '.') }}</p>
                     <p class="mt-6 text-lg text-gray-700">{!! nl2br($product->description) !!}</p>
                 </section>
                 <section class="mt-6">

@@ -6,14 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use App\Models\Product;
+use App\Models\Category;
 
 class StoreController extends Controller
 {
     public function store()
     {
-        $products = Product::where('state', 1)->get();
+        $products = Product::join('categories', 'products.category', '=', 'categories.id')
+            ->select('products.*', 'categories.name as category')
+            ->where('products.state', 1)
+            ->get();
 
-        return view('store', compact('products'));
+        $categories = Category::where('state', 1)->get();
+
+        return view('store', compact('products', 'categories'));
     }
 
     public function productOverview($name)
