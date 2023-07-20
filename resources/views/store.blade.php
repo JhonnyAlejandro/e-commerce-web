@@ -30,7 +30,7 @@
                             <button x-on:click="open =! open" type="button" class="flex justify-between items-center w-full py-3 text-gray-400 hover:text-gray-500">
                                 <span class="text-lg font-semibold text-gray-900">Categoría</span>
                                 <span class="flex items-center ml-6">
-                                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5">
+                                    <svg x-bind:class="{ 'transform rotate-180': open }" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5 transition-transform duration-300 ease-in-out">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
                                     </svg>
                                 </span>
@@ -97,9 +97,9 @@
                             </h3>
                             <p class="mt-1 text-md text-gray-500">
                                 @if ($product->service == 1)
-                                    Venta - {{ $product->category }}
+                                    Venta - {{ $product->categoryName }}
                                 @elseif ($product->service == 2)
-                                    Alquiler - {{ $product->category }}
+                                    Alquiler - {{ $product->categoryName }}
                                 @endif
                             </p>
                             @if ($product->discount > 0)

@@ -14,11 +14,11 @@
             </div>
             <div class="py-6 px-4 border-gray-100 border-t-2 md:col-span-1 md:px-0">
                 <dt class="text-lg font-semibold leading-7 text-gray-900">Referencia</dt>
-                <dd class="mt-2 text-lg leading-7 text-gray-700">{{ $product->reference }}</dd>
+                <dd class="mt-2 text-lg leading-7 text-gray-700">{{ $product->referenceName }}</dd>
             </div>
             <div class="py-6 px-4 border-gray-100 border-t-2 md:col-span-1 md:px-0">
                 <dt class="text-lg font-semibold leading-7 text-gray-900">Categoría</dt>
-                <dd class="mt-2 text-lg leading-7 text-gray-700">{{ $product->category }}</dd>
+                <dd class="mt-2 text-lg leading-7 text-gray-700">{{ $product->categoryName }}</dd>
             </div>
             <div class="py-6 px-4 border-gray-100 border-t-2 md:col-span-1 md:px-0">
                 <dt class="text-lg font-semibold leading-7 text-gray-900">Proveedor</dt>

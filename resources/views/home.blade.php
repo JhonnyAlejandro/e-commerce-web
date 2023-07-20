@@ -100,9 +100,9 @@
                         </h3>
                         <p class="mt-1 text-md text-gray-500">
                             @if ($product->service == 1)
-                                Venta - {{ $product->category }}
+                                Venta - {{ $product->categoryName }}
                             @elseif ($product->service == 2)
-                                Alquiler - {{ $product->category }}
+                                Alquiler - {{ $product->categoryName }}
                             @endif
                         </p>
                         @if ($product->discount > 0)

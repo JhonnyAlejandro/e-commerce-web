@@ -13,7 +13,7 @@ class StoreController extends Controller
     public function store()
     {
         $products = Product::join('categories', 'products.category', '=', 'categories.id')
-            ->select('products.*', 'categories.name as category')
+            ->select('products.*', 'categories.name as categoryName')
             ->where('products.state', 1)
             ->get();
 
