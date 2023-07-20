@@ -65,7 +65,7 @@
                 <p class="mt-1 text-lg text-gray-700">Si ha usado este producto, comparta sus opiniones con otros clientes.</p>
                 <form action="">
                     <div class="overflow-hidden mt-6 rounded-lg border-gray-300 border-2 shadow-sm focus-within:ring-2 focus-within:ring-indigo-600">
-                        <div class="flex items-center py-3 px-2.5">
+                        <div class="stars flex justify-end items-center py-3 px-2.5" dir="rtl">
                             <input type="radio" id="star1" class="sr-only" name="rating" value="1">
                             <label for="star1" class="cursor-pointer">
                                 <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7 text-gray-300">
@@ -109,4 +109,13 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('styles')
+    <style>
+        .stars input:hover ~ label svg,
+        .stars input:checked ~ label svg {
+            color: rgb(250, 204, 21); /* Color de la estrella activa */
+        }
+    </style>
 @stop
