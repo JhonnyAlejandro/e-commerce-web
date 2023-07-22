@@ -26,6 +26,7 @@ Route::middleware([
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/tienda', [App\Http\Controllers\StoreController::class, 'store'])->name('store');
 Route::get('/tienda/{name}', [App\Http\Controllers\StoreController::class, 'productOverview'])->name('productOverview');
+Route::get('/contactanos', [App\Http\Controllers\ContactController::class, 'contact'])->name('contact');
 
 Route::resource('/productos', App\Http\Controllers\ProductController::class)->names('products');
 Route::resource('/categorias', App\Http\Controllers\CategoryController::class)->names('categories');
