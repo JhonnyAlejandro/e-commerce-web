@@ -18,7 +18,7 @@
                     <div class="flex h-full space-x-8">
                         <a href="{{ route('home') }}" class="flex items-center text-lg font-medium text-gray-700 hover:text-gray-900">Inicio</a>
                         <a href="{{ route('store') }}" class="flex items-center text-lg font-medium text-gray-700 hover:text-gray-900">Tienda</a>
-                        <a href="" class="flex items-center text-lg font-medium text-gray-700 hover:text-gray-900">Sobre nosotros</a>
+                        <a href="{{ route('aboutUs') }}" class="flex items-center text-lg font-medium text-gray-700 hover:text-gray-900">Sobre nosotros</a>
                         <a href="{{ route('contact') }}" class="flex items-center text-lg font-medium text-gray-700 hover:text-gray-900">Contactanos</a>
                     </div>
                 </div>

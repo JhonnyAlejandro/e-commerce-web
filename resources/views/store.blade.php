@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <section class="pt-6 pb-24">
+        <section class="pt-6 pb-32">
             <div class="grid grid-cols-1 gap-x-8 gap-y-10 xl:grid-cols-4">
                 <form action="" class="hidden xl:block">
                     <div x-data="{ open: false }" class="py-6 border-gray-200 border-b-2">
@@ -67,17 +67,31 @@
                             </div>
                         </div>
                     </div>
-                    <div class="py-6 border-gray-200 border-b-2">
+                    <div x-data="{ open: false }" class="py-6 border-gray-200 border-b-2">
                         <h3 class="flow-root -my-3">
-                            <button type="button" class="flex justify-between items-center w-full py-3 text-gray-400 hover:text-gray-500">
+                            <button x-on:click="open =! open" type="button" class="flex justify-between items-center w-full py-3 text-gray-400 hover:text-gray-500">
                                 <span class="text-lg font-semibold text-gray-900">Precio de venta</span>
                                 <span class="flex items-center ml-6">
-                                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5">
+                                    <svg x-bind:class="{ 'transform rotate-180': open }" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5 transition-transform duration-300 ease-in-out">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
                                     </svg>
                                 </span>
                             </button>
                         </h3>
+                        <div x-show="open" x-transition.origin.top class="pt-6 space-y-4" style="display: none;">
+                            <div class="flex items-center">
+                                <x-checkbox id="cheap" name="cheap" />
+                                <x-label for="cheap" class="ml-3" value="{{ __('Del más económico al más caro') }}" />
+                            </div>
+                            <div class="flex items-center">
+                                <x-checkbox id="expensive" name="expensive" />
+                                <x-label for="expensive" class="ml-3" value="{{ __('Del más caro al más económico') }}" />
+                            </div>
+                            <div class="flex items-center">
+                                <x-checkbox id="discount" name="discount" />
+                                <x-label for="discount" class="ml-3" value="{{ __('Descuentos') }}" />
+                            </div>
+                        </div>
                     </div>
                 </form>
                 <div class="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 xl:col-span-3 xl:gap-x-8">

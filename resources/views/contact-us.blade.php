@@ -57,15 +57,15 @@
                             <x-label for="last_name" value="{{ __('Apellido') }}" />
                             <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" required />
                         </div>
-                        <div class="col-span-2">
+                        <div class="md:col-span-2">
                             <x-label for="email" value="{{ __('Correo electrónico') }}" />
                             <x-input id="email" class="block mt-1 w-full" type="email" name="email" required />
                         </div>
-                        <div class="col-span-2">
+                        <div class="md:col-span-2">
                             <x-label for="phone" value="{{ __('Número de teléfono') }}" />
                             <x-input id="phone" class="block mt-1 w-full" type="email" name="phone" required />
                         </div>
-                        <div class="col-span-2">
+                        <div class="md:col-span-2">
                             <x-label for="message" value="{{ __('Mensaje') }}" />
                             <x-textarea id="message" class="block mt-1 w-full" name="message" required />
                         </div>
