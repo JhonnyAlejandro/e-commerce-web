@@ -29,5 +29,13 @@ Route::get('/tienda/{name}', [App\Http\Controllers\StoreController::class, 'prod
 Route::get('/sobre-nosotros', [App\Http\Controllers\CompanyController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/contactanos', [App\Http\Controllers\ContactController::class, 'contact'])->name('contact');
 
-Route::resource('/productos', App\Http\Controllers\ProductController::class)->names('products');
-Route::resource('/categorias', App\Http\Controllers\CategoryController::class)->names('categories');
+Route::resource('/productos', App\Http\Controllers\ProductController::class)->names('products')->middleware('auth');
+Route::resource('/categorias', App\Http\Controllers\CategoryController::class)->names('categories')->middleware('auth');
+
+Route:: get('/terminos', function(){
+    return view('terms');
+});
+
+Route:: get('/politicas', function(){
+    return view('policy');
+});

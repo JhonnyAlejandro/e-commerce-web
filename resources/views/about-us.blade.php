@@ -1,12 +1,12 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="max-w-7xl mx-auto pt-36 px-6 pb-32 md:pt-60 xl:pt-32 xl:px-8">
+    <div class="max-w-7xl mx-auto py-32 px-6 xl:px-8">
         <div class="gap-x-14 max-w-2xl mx-auto xl:flex xl:items-center xl:max-w-none xl:mx-0">
             <div class="shrink-0 w-full max-w-xl">
                 <p class="text-2xl font-semibold text-gray-900">Sobre Estación Arcoiris Kids</p>
                 <h1 class="mt-4 text-5xl font-semibold text-gray-900">Creadores de sonrisas y momentos inolvidables para los más pequeños.</h1>
-                <p class="relative mt-6 text-lg text-gray-600 md:max-w-md xl:max-w-none">Somos una empresa dedicada a la recreación infantil atreves de juegos inflables, piscina de pelotas, zona de arte y demás. Con una amplia trayectoria en el campo. Contribuyendo al sano esparcimiento de nuestros niños, ofreciendo productos y servicios para eventos infantiles empresariales, fiestas, colegios y público en general.</p>
+                <p class="relative mt-6 text-xl text-gray-600 md:max-w-md xl:max-w-none">Somos una empresa dedicada a la recreación infantil atreves de juegos inflables, piscina de pelotas, zona de arte y demás. Con una amplia trayectoria en el campo. Contribuyendo al sano esparcimiento de nuestros niños, ofreciendo productos y servicios para eventos infantiles empresariales, fiestas, colegios y público en general.</p>
             </div>
             <div class="flex justify-end gap-8 mt-14 md:justify-start md:-mt-44 md:pl-20 xl:mt-0 xl:pl-0">
                 <div class="flex-none w-44 ml-auto pt-32 md:ml-0 md:pt-80 xl:pt-36 xl:order-last">
@@ -40,14 +40,14 @@
     </div>
     <div class="max-w-7xl -mt-12 mx-auto px-6 md:mt-0 xl:px-8">
         <div class="max-w-2xl mx-auto xl:max-w-none xl:mx-0">
-            <div class="grid grid-cols-1 gap-8 max-w-xl xl:grid-cols-2 xl:max-w-none">
+            <div class="grid grid-cols-1 gap-8 max-w-xl md:max-w-none xl:grid-cols-2">
                 <div>
-                    <h3 class="text-3xl font-semibold text-gray-900">Misión</h3>
-                    <p class="relative mt-6 text-lg text-gray-600 md:max-w-md xl:max-w-none">En Estación Arcoiris Kids, nuestra misión es establecer espacios de juego que inspiren a los niños a divertirse, compartir y fomentar buena relación con otros infantes y ofrecemos servir al cliente para que tenga una experiencia única con nuestro servicio.</p>
+                    <h3 class="text-4xl font-semibold text-gray-900">Misión</h3>
+                    <p class="relative mt-6 text-xl text-gray-600">En Estación Arcoiris Kids, nuestra misión es establecer espacios de juego que inspiren a los niños a divertirse, compartir y fomentar buena relación con otros infantes y ofrecemos servir al cliente para que tenga una experiencia única con nuestro servicio.</p>
                 </div>
                 <div>
-                    <h3 class="text-3xl font-semibold text-gray-900">Visión</h3>
-                    <p class="relative mt-6 text-lg text-gray-600 md:max-w-md xl:max-w-none">Queremos ser reconocidos por nuestra excelente selección de juegos de alta calidad y por proporciona un servicio excepcional a nuestros clientes. Nos comprometemos a ser líderes en el mercado, ofreciendo constantemente nuevas y emocionantes opciones de juego para satisfacer las necesidades y los intereses cambiantes de los niños.</p>
+                    <h3 class="text-4xl font-semibold text-gray-900">Visión</h3>
+                    <p class="relative mt-6 text-xl text-gray-600">Queremos ser reconocidos por nuestra excelente selección de juegos de alta calidad y por proporciona un servicio excepcional a nuestros clientes. Nos comprometemos a ser líderes en el mercado, ofreciendo constantemente nuevas y emocionantes opciones de juego para satisfacer las necesidades y los intereses cambiantes de los niños.</p>
                 </div>
             </div>
         </div>
@@ -56,8 +56,8 @@
         <img src="{{ asset('images/i.jpg') }}" class="aspect-[5/2] w-full object-cover">
     </div>
     <div class="max-w-7xl my-32 mx-auto px-6 xl:px-8">
-        <h3 class="text-3xl font-semibold text-gray-900">Nuestros valores</h3>
-        <dl class="grid grid-cols-1 gap-x-8 gap-y-16 max-w-2xl mt-6 mx-auto text-lg md:grid-cols-2 xl:grid-cols-3 xl:max-w-none xl:mx-0">
+        <h3 class="text-4xl font-semibold text-gray-900">Nuestros valores</h3>
+        <dl class="grid grid-cols-1 gap-x-8 gap-y-16 max-w-2xl mt-6 mx-auto text-xl md:grid-cols-2 xl:grid-cols-3 xl:max-w-none xl:mx-0">
             <div>
                 <dt class="font-semibold text-gray-900">Diversión y alegría</dt>
                 <dd class="mt-1 text-gray-600">Proporcionar experiencias de recreación que sean divertidas, alegres y llenas de emoción para los niños.</dd>

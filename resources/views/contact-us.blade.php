@@ -3,14 +3,14 @@
 @section('content')
     <div class="relative isolate">
         <div class="grid grid-cols-1 max-w-7xl mx-auto xl:grid-cols-2">
-            <div class="relative pt-24 px-6 pb-20 md:pt-32 xl:static xl:py-48 xl:px-8">
+            <div class="relative pt-32 px-6 pb-20 xl:static xl:py-48 xl:px-8">
                 <div class="max-w-xl mx-auto xl:max-w-lg xl:mx-0">
                     <div class="absolute inset-y-0 left-0 -z-10 overflow-hidden w-full bg-gray-100 border-gray-900/[0.1] border-r-2 xl:w-1/2"></div>
                     <h2 class="text-4xl font-semibold text-gray-900">Contactanos</h2>
-                    <p class="mt-6 text-2xl text-gray-700">
+                    <p class="mt-6 text-xl text-gray-700">
                         Vive la experiencia de las atracciones infantiles más increíbles de Colombia. Escribenos y estaremos complacidos en atender todas tus inquietudes.
                     </p>
-                    <dl class="space-y-6 mt-10 text-xl text-gray-700">
+                    <dl class="space-y-6 mt-10 text-lg text-gray-700">
                         <div class="flex gap-x-4">
                             <dt class="flex-none">
                                 <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7 text-gray-400">
@@ -18,7 +18,7 @@
                                 </svg>
                             </dt>
                             <dd>
-                                Cra 29 #5A - 28
+                                Cra 29 #5a - 28
                                 <br>
                                 Palmira, Valle del Cauca
                             </dd>

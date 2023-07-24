@@ -35,7 +35,7 @@
                     <div class="flex lg:ml-6">
                         <a href="" class="p-2 text-gray-400 hover:text-gray-500">
                             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
                             </svg>
                         </a>
                     </div>
@@ -51,7 +51,22 @@
             </div>
         </div>
         <div x-show="nav" x-on:click.outside="nav = false" x-transition.origin.top class="py-3 px-2 bg-white" style="display: none;">
-            Hola
+            <div class="pt-2 pb-3">
+                <a href="{{ route('home') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900">Inicio</a>
+                <a href="{{ route('store') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900">Tienda</a>
+                <a href="{{ route('aboutUs') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900">Sobre nosotros</a>
+                <a href="{{ route('contact') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900">Contactanos</a>
+            </div>
+            <div class="pt-4 pb-3 border-gray-200 border-t-2">
+                @if (Auth::guest())
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <a href="{{ route('login') }}" class="py-2 px-3 text-lg font-semibold text-gray-700 text-center ring-2 ring-inset ring-gray-300 rounded-md hover:bg-gray-50">Iniciar sesión</a>
+                        <a href="{{ route('register') }}" class="py-2 px-3 text-lg font-semibold text-white text-center bg-indigo-600 rounded-md hover:bg-indigo-500">Registrarse</a>
+                    </div>
+                @else
+                    <a href="{{ url('/dashboard') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900">Mi cuenta</a>
+                @endif
+            </div>
         </div>
     </div>
 </nav>

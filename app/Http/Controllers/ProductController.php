@@ -65,7 +65,7 @@ class ProductController extends Controller
         $products->state = 1;
         $products->save();
 
-        return redirect()->route('products.index')->with('notification', 'El producto fue agregado exitosamente');;
+        return redirect()->route('products.index')->with('notification', 'El producto fue agregado exitosamente');
     }
 
     /**
