@@ -1,13 +1,13 @@
 <div class="max-w-7xl mx-auto py-12 px-6 xl:px-8">
     <nav class="space-x-12 columns-2 -mb-6 md:flex md:justify-center">
         <div class="pb-6">
-            <a href="{{url('/terminos')}}" class="text-lg leading-7 text-gray-600 hover:text-gray-900">Términos y condiciones</a>
+            <a href="{{ url('/politicas') }}" class="text-lg leading-7 text-gray-600 hover:text-gray-900">Política de privacidad</a>
         </div>
         <div class="pb-6">
-            <a href="{{url('/politicas')}}" class="text-lg leading-7 text-gray-600 hover:text-gray-900">Política de privacidad</a>
+            <a href="{{ url('/terminos') }}" class="text-lg leading-7 text-gray-600 hover:text-gray-900">Términos y condiciones</a>
         </div>
         <div class="pb-6">
-            <a href="" class="text-lg leading-7 text-gray-600 hover:text-gray-900">Preguntas frecuentes</a>
+            <a href="{{ url('/preguntas') }}" class="text-lg leading-7 text-gray-600 hover:text-gray-900">Preguntas frecuentes</a>
         </div>
     </nav>
     <div class="flex justify-center space-x-10 mt-10">

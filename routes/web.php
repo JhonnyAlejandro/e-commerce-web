@@ -32,10 +32,14 @@ Route::get('/contactanos', [App\Http\Controllers\ContactController::class, 'cont
 Route::resource('/productos', App\Http\Controllers\ProductController::class)->names('products')->middleware('auth');
 Route::resource('/categorias', App\Http\Controllers\CategoryController::class)->names('categories')->middleware('auth');
 
+Route:: get('/politicas', function(){
+    return view('policy');
+});
+
 Route:: get('/terminos', function(){
     return view('terms');
 });
 
-Route:: get('/politicas', function(){
-    return view('policy');
+Route:: get('/preguntas', function(){
+    return view('questions');
 });

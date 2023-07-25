@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="py-32 px-6 text-xl text-gray-600 xl:px-8">
-        <div class="max-w-4xl mx-auto">
+        <div class="max-w-5xl mx-auto">
             <h1 class="text-4xl font-semibold text-gray-900">Términos y condiciones</h1>
             <p class="mt-6">
                 Fecha de entrada en vigor: xx/xx/xxxx.
