@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\ReferenceFormRequest;
+
 use App\Models\Reference;
 
 class ReferenceController extends Controller
@@ -13,7 +15,9 @@ class ReferenceController extends Controller
      */
     public function index()
     {
-        return view('modules.references.index');
+        $references = Reference::where('state', 1)->get();
+
+        return view('modules.references.index', compact('references'));
     }
 
     /**
@@ -27,9 +31,14 @@ class ReferenceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ReferenceFormRequest $request)
     {
-        //
+        $references = new Reference;
+        $references->name = $request->name;
+        $references->state = 1;
+        $references->save();
+
+        return redirect()->route('references.index')->with('notification', 'La referencia fue agregada exitosamente');
     }
 
     /**
@@ -51,9 +60,13 @@ class ReferenceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ReferenceFormRequest $request, string $id)
     {
-        //
+        $references = Reference::findOrFail($id);
+        $references->name = $request->name;
+        $references->update();
+
+        return redirect()->route('references.index')->with('notification', 'La referencia fue editada exitosamente');
     }
 
     /**
@@ -61,6 +74,10 @@ class ReferenceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $references = Reference::findOrFail($id);
+        $references->state = 0;
+        $references->update();
+
+        return redirect()->route('references.index')->with('notification', 'La referencia fue eliminada exitosamente');
     }
 }
