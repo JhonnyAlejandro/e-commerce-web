@@ -10,13 +10,13 @@
         <x-empty-states>
             <x-slot name="title">No hay productos</x-slot>
             Comience por crear un nuevo producto.
-            <x-slot name="button">Agregar productos</x-slot>
+            <x-slot name="button">Agregar producto</x-slot>
             <template x-teleport="body">
                 @include('modules.products.create')
             </template>
         </x-empty-states>
     @else
-        <div x-data="{ searchFilter: '', categoryFilter: '' }" class="overflow-hidden bg-white shadow-lg rounded-lg">
+        <div x-data="{ searchFilter: '', categoryFilter: '' }" class="bg-white shadow-lg rounded-lg">
             <div class="py-5 px-6 border-gray-200 border-b-2">
                 <x-section-heading>
                     <x-slot name="title">Productos registrados</x-slot>

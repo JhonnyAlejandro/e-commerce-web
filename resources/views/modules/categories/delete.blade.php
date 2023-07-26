@@ -1,6 +1,6 @@
 <x-modal>
     <div class="py-3 px-4 md:p-6">
-        <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+        <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
             @method('DELETE')
             @csrf
             <div>
@@ -10,13 +10,13 @@
                     </svg>
                 </div>
                 <div class="mt-5 text-center">
-                    <h3 class="text-xl font-bold">Eliminar producto</h3>
-                    <p class="mt-4 text-lg text-gray-500">¿Está seguro de que desea eliminar el producto? Todos los datos serán eliminados permanentemente de la base de datos. Esta acción no se puede deshacer.</p>
+                    <h3 class="text-xl font-bold">Eliminar categoría</h3>
+                    <p class="mt-4 text-lg text-gray-500">¿Está seguro de que desea eliminar la categoría? Todos los datos serán eliminados permanentemente de la base de datos. Esta acción no se puede deshacer.</p>
                 </div>
             </div>
             <div class="mt-5 md:grid md:grid-cols-2 md:grid-flow-row-dense md:gap-3 md:mt-6">
                 <x-danger-button type="submit" class="inline-flex justify-center w-full md:col-start-2">
-                    {{ __('Eliminar producto') }}
+                    {{ __('Eliminar categoría') }}
                 </x-danger-button>
                 <x-secondary-button x-on:click="modal = false" type="button" class="inline-flex justify-center w-full mt-3 md:mt-0">
                     {{ __('Cancelar') }}

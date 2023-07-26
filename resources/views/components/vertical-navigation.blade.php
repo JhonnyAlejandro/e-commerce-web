@@ -24,7 +24,7 @@
                         <a href="{{ route('categories.index') }}" class="block p-2 text-lg leading-7 text-gray-700 rounded-md hover:text-indigo-600 hover:bg-gray-50">Categorías</a>
                     </li>
                     <li>
-                        <a href="#" class="block p-2 text-lg leading-7 text-gray-700 rounded-md hover:text-indigo-600 hover:bg-gray-50">Referencias</a>
+                        <a href="{{ route('references.index') }}" class="block p-2 text-lg leading-7 text-gray-700 rounded-md hover:text-indigo-600 hover:bg-gray-50">Referencias</a>
                     </li>
                 </ul>
             </div>

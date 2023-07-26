@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div x-data="{ searchFilter: ''} " class="max-w-7xl mx-auto px-4 md:px-6 xl:px-8">
+    <div x-data="{ searchFilter: '' } " class="max-w-7xl mx-auto px-4 md:px-6 xl:px-8">
         <div class="pt-24 pb-6 border-gray-200 border-b-2">
             <div class="xl:flex xl:justify-between xl:items-center">
                 <h3 class="text-4xl font-semibold leading-7">Tienda</h3>
