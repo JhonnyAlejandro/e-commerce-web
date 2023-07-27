@@ -7,22 +7,16 @@
         </x-notification>
     @endif
     @if ($categories->isEmpty())
-        <x-empty-states>
-            <x-slot name="title">No hay categorías</x-slot>
-            Comience por crear una nueva categoría.
-            <x-slot name="button">Agregar categoría</x-slot>
-            <template x-teleport="body">
-                @include('modules.categories.create')
-            </template>
-        </x-empty-states>
+    <x-empty-states>
+        <x-slot name="modal">
+            @include('modules.categories.create')
+        </x-slot>
+    </x-empty-states>
     @else
         <div class="bg-white shadow-lg rounded-lg">
             <div class="py-5 px-6 border-gray-200 border-b-2">
                 <x-card-header>
-                    Categorías registradas
-                    <x-slot name="button">
-                        Crear nueva categoría
-                    </x-slot>
+                    <x-slot name="title">Categorías registradas</x-slot>
                     <x-slot name="modal">
                         @include('modules.categories.create')
                     </x-slot>

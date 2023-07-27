@@ -7,14 +7,11 @@
         </x-notification>
     @endif
     @if ($products->isEmpty())
-        <x-empty-states>
-            <x-slot name="title">No hay productos</x-slot>
-            Comience por crear un nuevo producto.
-            <x-slot name="button">Agregar producto</x-slot>
-            <template x-teleport="body">
-                @include('modules.products.create')
-            </template>
-        </x-empty-states>
+    <x-empty-states>
+        <x-slot name="modal">
+            @include('modules.products.create')
+        </x-slot>
+    </x-empty-states>
     @else
         <div x-data="{ searchFilter: '', categoryFilter: '' }" class="bg-white shadow-lg rounded-lg">
             <div class="py-5 px-6 border-gray-200 border-b-2">
@@ -49,7 +46,7 @@
                     </template>
                 </div>
                 @foreach ($products as $product)
-                    <li x-show="searchProducts('{{ $product->name }}', searchFilter) && (categoryFilter === '' || categoryFilter === '{{ $product->categoryName }}')" class="overflow-hidden rounded-xl border-gray-200 border-2">
+                    <li x-show="searchProducts('{{ $product->name }}', searchFilter) && categoryFilter === '' || categoryFilter === '{{ $product->categoryName }}'" class="overflow-hidden rounded-xl border-gray-200 border-2">
                         <div class="flex items-center gap-x-4 p-6 bg-gray-50 border-gray-900/[0.05] border-b-2">
                             <img src="{{ asset($product->image) }}" class="flex-none w-12 h-12 bg-white object-cover object-center ring-1 ring-gray-900/[0.1] rounded-lg">
                             <h3 class="overflow-hidden w-full text-lg font-semibold leading-7 text-gray-900 whitespace-nowrap text-ellipsis">{{ $product->name }}</h3>

@@ -8,21 +8,15 @@
     @endif
     @if ($references->isEmpty())
         <x-empty-states>
-            <x-slot name="title">No hay referencias</x-slot>
-            Comience por crear una nueva referencia.
-            <x-slot name="button">Agregar referencia</x-slot>
-            <template x-teleport="body">
+            <x-slot name="modal">
                 @include('modules.references.create')
-            </template>
+            </x-slot>
         </x-empty-states>
     @else
         <div class="bg-white shadow-lg rounded-lg">
             <div class="py-5 px-6 border-gray-200 border-b-2">
                 <x-card-header>
-                    Referencias registradas
-                    <x-slot name="button">
-                        Crear nueva referencia
-                    </x-slot>
+                    <x-slot name="title">Referencias registradas</x-slot>
                     <x-slot name="modal">
                         @include('modules.references.create')
                     </x-slot>

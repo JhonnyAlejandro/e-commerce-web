@@ -22,19 +22,5 @@
             </svg>
         </a>
     </div>
-    <div class="mt-8 pt-8 border-gray-900/[0.1] border-t-2 xl:flex xl:justify-between xl:items-center">
-        <div>
-            <h3 class="text-lg font-semibold text-gray-900">Suscríbete a nuestro boletín</h3>
-            <p class="mt-2 text-lg text-gray-600">Las últimas noticias, productos y más, enviados a su bandeja de entrada.</p>
-        </div>
-        <form action="" class="mt-6 md:flex md:max-w-md xl:mt-0">
-            <x-input class="block w-full md:w-80" type="email" name="email" placeholder="Introduce tu correo electrónico" required />
-            <div class="mt-4 md:mt-0 md:ml-4">
-                <x-button type="submit" class="inline-flex justify-center w-full md:w-auto">
-                    {{ __('Suscribirse') }}
-                </x-button>
-            </div>
-        </form>
-    </div>
     <p class="mt-8 pt-8 text-sm leading-6 text-gray-500 text-center border-gray-900/[0.1] border-t-2">© 2023 Estación Arcoiris Kids. Todos los derechos reservados.</p>
 </div>
