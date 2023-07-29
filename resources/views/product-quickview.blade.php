@@ -26,13 +26,18 @@
                 </section>
                 <section class="mt-6">
                     <form action="">
-                        <div class="mt-6">
+                        <div class="flex mt-6">
                             <x-button class="inline-flex justify-center w-full py-3 px-8">
                                 <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7 mr-3">
                                     <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"></path>
                                 </svg>
                                 {{ __('Agregar al carro') }}
                             </x-button>
+                            <button class="flex justify-center items-center ml-4 p-3 text-gray-400 rounded-md hover:text-gray-500 hover:bg-gray-100">
+                                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
+                                </svg>
+                            </button>
                         </div>
                         <p class="absolute top-4 left-4 text-center md:static md:mt-6">
                             <a href="{{ route('productOverview', ['name' => Str::slug(Str::lower($product->name))]) }}" class="text-lg font-semibold text-indigo-600 hover:text-indigo-500">Ver detalles completos</a>
