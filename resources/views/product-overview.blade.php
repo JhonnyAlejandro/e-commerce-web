@@ -70,7 +70,8 @@
             <div class="max-w-2xl mt-16 mx-auto xl:col-span-3 xl:max-w-none xl:mt-0">
                 <h2 class="text-2xl font-semibold text-gray-900">Comparte tus pensamientos</h2>
                 <p class="mt-1 text-lg text-gray-700">Si ha usado este producto, comparta sus opiniones con otros clientes.</p>
-                <form action="">
+                <form action="" method="POST">
+                    @csrf
                     <div class="overflow-hidden mt-6 rounded-lg border-gray-300 border-2 shadow-sm focus-within:ring-2 focus-within:ring-indigo-600">
                         <div class="stars flex justify-end items-center py-3 px-2.5" dir="rtl">
                             <input type="radio" id="star5" class="sr-only" name="rating" value="5">

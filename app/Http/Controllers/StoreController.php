@@ -22,7 +22,7 @@ class StoreController extends Controller
         return view('store', compact('products', 'categories'));
     }
 
-    public function productOverview($name)
+    public function productOverview(string $name)
     {
         $product = Product::whereRaw("LOWER(REPLACE(name, ' ', '-')) = ?", Str::slug(Str::lower($name)))->firstOrFail();
 
