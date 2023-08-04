@@ -25,7 +25,7 @@ Route::middleware([
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/tienda', [App\Http\Controllers\StoreController::class, 'store'])->name('store');
-Route::get('/tienda/{name}', [App\Http\Controllers\StoreController::class, 'productOverview'])->name('productOverview');
+Route::match(['get', 'post'], '/tienda/{name}', [App\Http\Controllers\StoreController::class, 'productOverview'])->name('productOverview');
 Route::view('/sobre-nosotros', 'about-us');
 Route::get('/contactanos', [App\Http\Controllers\ContactController::class, 'contact'])->name('contact');
 
