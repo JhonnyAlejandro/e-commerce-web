@@ -28,6 +28,7 @@
                 <x-footer />
             </footer>
         </div>
+        <x-cookie-banner />
 
         @yield('scripts')
     </body>
