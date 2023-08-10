@@ -52,7 +52,7 @@
                                 </div>
                             </td>
                             <td class="hidden py-6 pr-8 md:table-cell">$570.000</td>
-                            <td class="hidden py-6 pr-8 md:table-cell">Completado</td>
+                            <td class="hidden py-6 pr-8 md:table-cell">Pendiente - agosto 09, 2023</td>
                             <td class="py-6 font-semibold text-right whitespace-nowrap">
                                 <a href="#" class="text-indigo-600 hover:text-indigo-500">Ver producto</a>
                             </td>
