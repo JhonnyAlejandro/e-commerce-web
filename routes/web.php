@@ -36,3 +36,4 @@ Route::view('/preguntas', 'questions');
 Route::resource('/productos', App\Http\Controllers\ProductController::class)->names('products')->middleware('auth');
 Route::resource('/categorias', App\Http\Controllers\CategoryController::class)->names('categories')->middleware('auth');
 Route::resource('/referencias', App\Http\Controllers\ReferenceController::class)->names('references')->middleware('auth');
+Route::get('/ventas', [App\Http\Controllers\SaleController::class, 'index'])->name('sales')->middleware('auth');
