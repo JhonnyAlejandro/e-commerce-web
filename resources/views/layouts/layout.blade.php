@@ -22,6 +22,11 @@
                 <x-navbar />
             </header>
             <main>
+                @if (session('notification'))
+                    <x-notification>
+                        {{ session('notification') }}
+                    </x-notification>
+                @endif
                 @yield('content')
             </main>
             <footer class="bg-gray-50 border-t-2 border-gray-200">

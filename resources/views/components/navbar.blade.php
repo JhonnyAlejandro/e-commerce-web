@@ -32,12 +32,19 @@
                     @else
                         <a href="{{ url('/dashboard') }}" class="hidden text-lg font-medium text-gray-700 hover:text-gray-900 lg:block">Mi cuenta</a>
                     @endif
-                    <div class="flex lg:ml-6">
-                        <a href="" class="p-2 text-gray-400 hover:text-gray-500">
+                    <div x-data="{ modal: false }" class="flex lg:ml-6">
+                        <button x-on:click="modal =! modal" type="button" class="flex items-center p-2 text-gray-400 hover:text-gray-500">
                             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
                             </svg>
-                        </a>
+                            @php
+                                $count = \App\Models\Favorite::where('user', auth()->id())->count();
+                            @endphp
+                            <span class="ml-2 text-lg font-medium text-gray-700">{{$count}}</span>
+                        </button>
+                        <template x-teleport="body">
+                            @include('favorites-list')
+                        </template>
                     </div>
                     <div x-data="{ modal: false }" class="flow-root ml-4 lg:ml-6">
                         <button x-on:click="modal =! modal" type="button" class="group flex items-center -m-2 p-2">

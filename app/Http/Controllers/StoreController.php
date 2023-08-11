@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Review;
+use App\Models\Favorite;
 
 class StoreController extends Controller
 {
@@ -49,5 +50,26 @@ class StoreController extends Controller
         }
 
         return view('product-overview', compact('product', 'reviews'));
+    }
+
+    public function favorites(Request $request, string $product)
+    {
+        $favorites = Favorite::where('user', auth()->id())
+            ->where('product', $product)
+            ->first();
+
+        if ($favorites) {
+            $favorites->delete();
+
+            return redirect()->back()->with('notification', 'El producto fue eliminado de la lista de favoritos');
+        } else {
+            $favorites = new Favorite();
+            $favorites->user = auth()->id();
+            $favorites->product = $product;
+            $favorites->state = 1;
+            $favorites->save();
+
+            return redirect()->back()->with('notification', 'El producto fue agregado a la lista de favoritos');
+        }
     }
 }
