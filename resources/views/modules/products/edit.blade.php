@@ -14,7 +14,7 @@
                     @endforeach
                 </x-alert>
             @endif
-            <div x-data="{ price: {{ $product->price }}, discount: {{ $product->discount }} }" class="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-6">
+            <div x-data="{ price: {{ $product->sale_price }}, discount: {{ $product->discount }} }" class="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-6">
                 <div class="md:col-span-1">
                     <x-label for="edit-code" value="{{ __('Código') }}" />
                     <x-input id="edit-code" class="block mt-1 w-full" type="text" name="code" value="{{ $product->code }}" required />
@@ -64,7 +64,7 @@
                 </div>
                 <div class="md:col-span-2">
                     <x-label for="edit-price" value="{{ __('Precio base') }}" />
-                    <x-input x-model="price" id="edit-price" class="block mt-1 w-full" type="text" name="price" value="{{ $product->price }}" required />
+                    <x-input x-model="price" id="edit-price" class="block mt-1 w-full" type="text" name="price" value="{{ $product->sale_price }}" required />
                 </div>
                 <div class="md:col-span-1">
                     <x-label for="edit-discount" value="{{ __('Descuento') }}" />

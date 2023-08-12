@@ -58,7 +58,7 @@ class ProductController extends Controller
         $products->provider = $request->provider;
         $products->service = $request->service;
         $products->existence = $request->existence;
-        $products->price = $request->price;
+        $products->sale_price = $request->price;
         $products->discount = $request->discount;
         $products->description = $request->description;
         $products->image = $image;

@@ -12,11 +12,11 @@
                 <h1 class="text-4xl font-semibold text-gray-900">{{ $product->name }}</h1>
                 @if ($product->discount > 0)
                     <div class="flex mt-3">
-                        <p class="text-lg font-medium text-gray-500 line-through">${{ number_format($product->price, 0, '.', '.') }}</p>
-                        <p class="ml-2 text-3xl font-medium text-gray-900">${{ number_format($product->price - $product->price * ($product->discount / 100), 0, '.', '.') }}</p>
+                        <p class="text-lg font-medium text-gray-500 line-through">${{ number_format($product->sale_price, 0, '.', '.') }}</p>
+                        <p class="ml-2 text-3xl font-medium text-gray-900">${{ number_format($product->sale_price - $product->sale_price * ($product->discount / 100), 0, '.', '.') }}</p>
                     </div>
                 @else
-                    <p class="mt-3 text-3xl font-medium text-gray-900">${{ number_format($product->price, 0, '.', '.') }}</p>
+                    <p class="mt-3 text-3xl font-medium text-gray-900">${{ number_format($product->sale_price, 0, '.', '.') }}</p>
                 @endif
                 <p class="mt-6 text-lg text-gray-700">{!! nl2br($product->description) !!}</p>
                 <div class="flex mt-10">
@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="flex items-center mt-6 xl:flex-col xl:items-start xl:col-span-4 xl:col-start-1 xl:row-start-1 xl:mt-0">
                                     <p class="text-lg font-semibold text-gray-900">{{ $review->firstName }}</p>
-                                    <p class="ml-4 pl-4 border-gray-200 border-l-2 text-md font-semibold text-gray-700 xl:mt-2 xl:ml-0 xl:pl-0 xl:border-0">{{ $review->created_at->isoFormat('MMMM DD, YYYY') }}</p>
+                                    <p class="ml-4 pl-4 border-gray-200 border-l-2 text-md font-semibold text-gray-700 xl:mt-2 xl:ml-0 xl:pl-0 xl:border-0">{{ \Carbon\Carbon::parse($review->created_at)->isoFormat('MMM DD, YYYY') }}</p>
                                 </div>
                             </div>
                         @endforeach

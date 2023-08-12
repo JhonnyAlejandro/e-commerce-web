@@ -118,11 +118,11 @@
                             </p>
                             @if ($product->discount > 0)
                                 <div class="flex items-center mt-1">
-                                    <p class="text-lg font-medium text-gray-500 line-through">${{ number_format($product->price, 0, '.', '.') }}</p>
-                                    <p class="ml-2 text-lg font-medium text-gray-900">${{ number_format($product->price - $product->price * ($product->discount / 100), 0, '.', '.') }}</p>
+                                    <p class="text-lg font-medium text-gray-500 line-through">${{ number_format($product->sale_price, 0, '.', '.') }}</p>
+                                    <p class="ml-2 text-lg font-medium text-gray-900">${{ number_format($product->sale_price - $product->sale_price * ($product->discount / 100), 0, '.', '.') }}</p>
                                 </div>
                             @else
-                                <p class="mt-1 text-lg font-medium text-gray-900">${{ number_format($product->price, 0, '.', '.') }}</p>
+                                <p class="mt-1 text-lg font-medium text-gray-900">${{ number_format($product->sale_price, 0, '.', '.') }}</p>
                             @endif
                         </div>
                     @endforeach

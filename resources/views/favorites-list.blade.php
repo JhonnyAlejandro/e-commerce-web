@@ -2,7 +2,7 @@
     @php
         $favorites = \App\Models\Favorite::join('products', 'favorites.product', '=', 'products.id')
             ->join('categories', 'products.category', '=', 'categories.id')
-            ->select('favorites.*', 'products.id as productId', 'products.image as productImage', 'products.name as productName', 'products.service as productService', 'categories.name as productCategory', 'products.price as productPrice', 'products.discount as productDiscount')
+            ->select('favorites.*', 'products.id as productId', 'products.image as productImage', 'products.name as productName', 'products.service as productService', 'categories.name as productCategory', 'products.sale_price as productSalePrice', 'products.discount as productDiscount')
             ->where('user', auth()->id())
             ->get();
     @endphp
@@ -31,8 +31,8 @@
                                         <div class="flex justify-between text-xl font-semibold text-gray-900">
                                             <h3>{{ $favorite->productName }}</h3>
                                             <div class="block ml-4 md:flex md:items-center">
-                                                <p class="font-medium text-gray-500 line-through">${{ number_format($favorite->productPrice, 0, '.', '.') }}</p>
-                                                <p class="md:ml-2">${{ number_format($favorite->productPrice - $favorite->productPrice * ($favorite->productDiscount / 100), 0, '.', '.') }}</p>
+                                                <p class="font-medium text-gray-500 line-through">${{ number_format($favorite->productSalePrice, 0, '.', '.') }}</p>
+                                                <p class="md:ml-2">${{ number_format($favorite->productSalePrice - $favorite->productSalePrice * ($favorite->productDiscount / 100), 0, '.', '.') }}</p>
                                             </div>
                                         </div>
                                         <p class="mt-1 text-lg text-gray-500">
@@ -44,7 +44,7 @@
                                         </p>
                                     </div>
                                     <div class="flex flex-1 justify-between items-end text-lg">
-                                        <p class="text-gray-500">{{ $favorite->created_at->isoFormat('MMM DD, YYYY') }}</p>
+                                        <p class="text-gray-500">{{ \Carbon\Carbon::parse($favorite->created_at)->isoFormat('MMM DD, YYYY') }}</p>
                                         <div class="flex">
                                             <form action="{{ route('favorites', ['product' => $favorite->productId]) }}" method="POST">
                                                 @csrf

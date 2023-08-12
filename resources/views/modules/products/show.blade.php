@@ -40,7 +40,7 @@
             </div>
             <div class="py-6 px-4 border-gray-100 border-t-2 md:col-span-1 md:px-0">
                 <dt class="text-lg font-semibold leading-7 text-gray-900">Precio base</dt>
-                <dd class="mt-2 text-lg leading-7 text-gray-700">${{ number_format($product->price, 0, '.', '.') }}</dd>
+                <dd class="mt-2 text-lg leading-7 text-gray-700">${{ number_format($product->sale_price, 0, '.', '.') }}</dd>
             </div>
             <div class="py-6 px-4 border-gray-100 border-t-2 md:col-span-1 md:px-0">
                 <dt class="text-lg font-semibold leading-7 text-gray-900">Descuento</dt>
@@ -48,7 +48,7 @@
             </div>
             <div class="py-6 px-4 border-gray-100 border-t-2 md:col-span-1 md:px-0">
                 <dt class="text-lg font-semibold leading-7 text-gray-900">Precio final</dt>
-                <dd class="mt-2 text-lg leading-7 text-gray-700">${{ number_format($product->price - $product->price * ($product->discount / 100), 0, '.', '.') }}</dd>
+                <dd class="mt-2 text-lg leading-7 text-gray-700">${{ number_format($product->sale_price - $product->sale_price * ($product->discount / 100), 0, '.', '.') }}</dd>
             </div>
             <div class="py-6 px-4 border-gray-100 border-t-2 md:col-span-2 md:px-0">
                 <dt class="text-lg font-semibold leading-7 text-gray-900">Descripción</dt>
