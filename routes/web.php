@@ -33,6 +33,7 @@ Route::get('/contactanos', [App\Http\Controllers\ContactController::class, 'cont
 Route::view('/politicas', 'policy');
 Route::view('/terminos', 'terms');
 Route::view('/preguntas', 'questions');
+Route::view('/cookies', 'cookies');
 
 Route::resource('/productos', App\Http\Controllers\ProductController::class)->names('products')->middleware('auth');
 Route::resource('/categorias', App\Http\Controllers\CategoryController::class)->names('categories')->middleware('auth');

@@ -3,7 +3,7 @@
     <div x-show="banner" x-transition.origin.right.bottom class="fixed inset-0 flex items-end p-6" style="display: none;">
         <div class="w-full max-w-2xl ml-auto p-6 bg-white rounded-xl">
             <p class="text-lg font-semibold text-gray-900">Nuestro sitio web utiliza cookies</p>
-            <p class="mt-1 text-lg text-gray-500">Almacenamos cookies necesarias en su dispositivo para mejorar y personalizar el contenido. Consulte nuestra <a href="" class="font-semibold text-indigo-600 hover:text-indigo-500">política de cookies</a>.</p>
+            <p class="mt-1 text-lg text-gray-500">Almacenamos cookies necesarias en su dispositivo para mejorar y personalizar el contenido. Consulte nuestra <a href="{{ url('/cookies') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">política de cookies</a>.</p>
             <div class="flex items-center gap-x-5 mt-5">
                 <x-button x-on:click="banner = false; localStorage.setItem('cookies', 'true')" class="inline-flex items-center w-auto">
                     <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5 mr-2">

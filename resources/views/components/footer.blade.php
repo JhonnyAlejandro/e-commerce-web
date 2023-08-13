@@ -9,6 +9,9 @@
         <div class="pb-6">
             <a href="{{ url('/preguntas') }}" class="text-lg leading-7 text-gray-600 hover:text-gray-900">Preguntas frecuentes</a>
         </div>
+        <div class="pb-6">
+            <a href="{{ url('/cookies') }}" class="text-lg leading-7 text-gray-600 hover:text-gray-900">Política de cookies</a>
+        </div>
     </nav>
     <div class="flex justify-center space-x-10 mt-10">
         <a href="https://www.facebook.com/estacionarcoiriskids?mibextid=ZbWKwL" target="_blank" class="text-gray-400 hover:text-gray-500">
