@@ -1,6 +1,6 @@
 <x-modal>
     <div class="p-6 border-gray-200 border-b-2">
-        <h3 class="text-2xl font-semibold leading-7 text-center md:text-left">Agregar una nueva referencia</h3>
+        <h3 class="text-2xl font-semibold leading-7 text-center md:text-left">Editar referencia</h3>
     </div>
     <form action="{{ route('references.update', $reference->id) }}" method="POST">
         @method('PUT')
@@ -23,7 +23,7 @@
         </div>
         <div class="py-3 px-4 bg-gray-50 md:flex md:flex-row-reverse md:px-6">
             <x-button type="submit" class="inline-flex justify-center w-full md:w-auto md:ml-3">
-                {{ __('Agregar referencia') }}
+                {{ __('Editar referencia') }}
             </x-button>
             <x-secondary-button x-on:click="modal = false" type="button" class="inline-flex justify-center w-full mt-3 md:w-auto md:mt-0">
                 {{ __('Cancelar') }}

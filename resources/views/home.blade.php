@@ -39,10 +39,10 @@
                             <div>
                                 <p class="text-sm text-white">Alquiler de</p>
                                 <h3 class="mt-1 text-lg font-semibold text-white">
-                                    <a href="#">
+                                    <p>
                                         <span class="absolute inset-0"></span>
                                         Inflables
-                                    </a>
+                                    </p>
                                 </h3>
                             </div>
                         </div>
@@ -60,10 +60,10 @@
                             <div>
                                 <p class="text-sm text-white">Decoraciones para</p>
                                 <h3 class="mt-1 text-lg font-semibold text-white">
-                                    <a href="#">
+                                    <p>
                                         <span class="absolute inset-0"></span>
                                         Cumpleaños
-                                    </a>
+                                    </p>
                                 </h3>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                                 <p class="ml-2 text-lg font-medium text-gray-900">${{ number_format($product->sale_price - $product->sale_price * ($product->discount / 100), 0, '.', '.') }}</p>
                             </div>
                         @else
-                            <p class="mt-1 text-lg font-medium text-gray-900 line-through">${{ number_format($product->sale_price, 0, '.', '.') }}</p>
+                            <p class="mt-1 text-lg font-medium text-gray-900">${{ number_format($product->sale_price, 0, '.', '.') }}</p>
                         @endif
                     </div>
                 @endforeach

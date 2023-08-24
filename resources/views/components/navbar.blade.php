@@ -12,7 +12,7 @@
                     </svg>
                 </button>
                 <div class="flex ml-4 lg:ml-0">
-                    <a href="#">LOGO</a>
+                    <a href="{{ route('home') }}">LOGO</a>
                 </div>
                 <div class="hidden lg:block lg:self-stretch lg:ml-8">
                     <div class="flex h-full space-x-8">

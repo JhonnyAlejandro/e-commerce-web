@@ -134,12 +134,12 @@
                                 <dt class="text-gray-500">Precio base</dt>
                                 <dd class="flex items-center gap-x-2">
                                     <div class="py-1 px-2 text-base font-medium text-blue-700  bg-blue-50 rounded-lg ring-1 ring-inset ring-blue-700/10">{{ $product->discount }}%</div>
-                                    <div class="overflow-hidden w-16 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">${{ number_format($product->price, 0, '.', '.') }}</div>
+                                    <div class="overflow-hidden w-16 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">${{ number_format($product->sale_price, 0, '.', '.') }}</div>
                                 </dd>
                             </div>
                             <div class="flex justify-between gap-x-px py-3 border-t-2 border-gray-100">
                                 <dt class="text-gray-500">Precio final</dt>
-                                <dd class="overflow-hidden w-28 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">${{ number_format($product->price - $product->price * ($product->discount / 100), 0, '.', '.') }}</dd>
+                                <dd class="overflow-hidden w-28 font-medium text-gray-900 text-end whitespace-nowrap text-ellipsis">${{ number_format($product->sale_price - $product->sale_price * ($product->discount / 100), 0, '.', '.') }}</dd>
                             </div>
                         </dl>
                     </li>
@@ -154,5 +154,29 @@
         function searchProducts(name, searchFilter) {
             return name.toLowerCase().includes(searchFilter.toLowerCase());
         }
+
+        $(document).ready(function() {
+            function displayImage(input, image, icon) {
+                var file = $('#' + input)[0].files[0];
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#' + image).attr('src', e.target.result).show();
+                    $('#' + icon).hide();
+                    $('#initial-svg').hide();
+                };
+
+                reader.readAsDataURL(file);
+            }
+
+            $('#create-image').change(function() {
+                displayImage('create-image', 'image', 'icon');
+            });
+
+            $('[id^="edit-image"]').change(function() {
+                var productId = $(this).attr('id').replace('edit-image', '');
+                displayImage('edit-image' + productId, 'image' + productId, 'icon' + productId);
+            });
+        });
     </script>
 @stop

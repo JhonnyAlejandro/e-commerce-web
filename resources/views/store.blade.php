@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div x-data="{ searchFilter: '' } " class="max-w-7xl mx-auto px-4 md:px-6 xl:px-8">
+    <div x-data="{ searchFilter: '' }" class="max-w-7xl mx-auto px-4 md:px-6 xl:px-8">
         <div class="pt-24 pb-6 border-gray-200 border-b-2">
             <div class="xl:flex xl:justify-between xl:items-center">
                 <h3 class="text-4xl font-semibold leading-7">Tienda</h3>
@@ -24,8 +24,8 @@
         </div>
         <section class="pt-6 pb-32">
             <div class="grid grid-cols-1 gap-x-8 gap-y-10 xl:grid-cols-4">
-                <form action="" class="hidden xl:block">
-                    <div x-data="{ open: false }" class="py-6 border-gray-200 border-b-2">
+                <div class="hidden xl:block">
+                    <div x-data="{ open: false, selectedCategories: [] }" class="py-6 border-gray-200 border-b-2">
                         <h3 class="flow-root -my-3">
                             <button x-on:click="open =! open" type="button" class="flex justify-between items-center w-full py-3 text-gray-400 hover:text-gray-500">
                                 <span class="text-lg font-semibold text-gray-900">Categoría</span>
@@ -39,13 +39,13 @@
                         <div x-show="open" x-transition.origin.top class="pt-6 space-y-4" style="display: none;">
                             @foreach ($categories as $category)
                                 <div class="flex items-center">
-                                    <x-checkbox id="{{ $category->name }}" name="{{ $category->name }}" />
+                                    <x-checkbox x-model="selectedCategories" id="{{ $category->name }}" name="category" value="{{ $category->name }}" />
                                     <x-label for="{{ $category->name }}" class="ml-3" value="{{ $category->name }}" />
                                 </div>
                             @endforeach
                         </div>
                     </div>
-                    <div x-data="{ open: false }" class="py-6 border-gray-200 border-b-2">
+                    <div x-data="{ open: false, selectedServices: [] }" class="py-6 border-gray-200 border-b-2">
                         <h3 class="flow-root -my-3">
                             <button x-on:click="open =! open" type="button" class="flex justify-between items-center w-full py-3 text-gray-400 hover:text-gray-500">
                                 <span class="text-lg font-semibold text-gray-900">Servicio</span>
@@ -58,16 +58,16 @@
                         </h3>
                         <div x-show="open" x-transition.origin.top class="pt-6 space-y-4" style="display: none;">
                             <div class="flex items-center">
-                                <x-checkbox id="sale" name="sale" />
+                                <x-checkbox x-model="selectedServices" id="sale" name="service" value="1" />
                                 <x-label for="sale" class="ml-3" value="{{ __('Venta') }}" />
                             </div>
                             <div class="flex items-center">
-                                <x-checkbox id="rent" name="rent" />
+                                <x-checkbox x-model="selectedServices" id="rent" name="service" value="2" />
                                 <x-label for="rent" class="ml-3" value="{{ __('Alquiler') }}" />
                             </div>
                         </div>
                     </div>
-                    <div x-data="{ open: false }" class="py-6 border-gray-200 border-b-2">
+                    <div x-data="{ open: false, selectedDiscount: [] }" class="py-6 border-gray-200 border-b-2">
                         <h3 class="flow-root -my-3">
                             <button x-on:click="open =! open" type="button" class="flex justify-between items-center w-full py-3 text-gray-400 hover:text-gray-500">
                                 <span class="text-lg font-semibold text-gray-900">Precio de venta</span>
@@ -80,23 +80,15 @@
                         </h3>
                         <div x-show="open" x-transition.origin.top class="pt-6 space-y-4" style="display: none;">
                             <div class="flex items-center">
-                                <x-checkbox id="cheap" name="cheap" />
-                                <x-label for="cheap" class="ml-3" value="{{ __('Del más económico al más caro') }}" />
-                            </div>
-                            <div class="flex items-center">
-                                <x-checkbox id="expensive" name="expensive" />
-                                <x-label for="expensive" class="ml-3" value="{{ __('Del más caro al más económico') }}" />
-                            </div>
-                            <div class="flex items-center">
-                                <x-checkbox id="discount" name="discount" />
+                                <x-checkbox x-model="selectedDiscount" id="discount" name="discount" />
                                 <x-label for="discount" class="ml-3" value="{{ __('Descuentos') }}" />
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
                 <div class="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 xl:col-span-3 xl:gap-x-8">
                     @foreach ($products as $product)
-                        <div x-data="{ modal: false, product: {} }" x-show="searchProducts('{{ $product->name }}', searchFilter)" class="relative group">
+                        <div x-data="{ modal: false, product: {}, selectedCategories: [], selectedServices: [], searchFilter: '' }" class="relative group" data-product-id="{{ $product->id }}">
                             <div class="overflow-hidden w-full h-56 rounded-md group-hover:opacity-75 xl:h-72">
                                 <img src="{{ asset($product->image) }}" class="w-full h-full object-cover object-center">
                             </div>
@@ -134,8 +126,63 @@
 
 @section('scripts')
     <script>
-        function searchProducts(name, searchFilter) {
-            return name.toLowerCase().includes(searchFilter.toLowerCase());
+        function searchProducts(product, searchFilter, selectedCategories, selectedServices, selectedDiscount) {
+            const nameMatch = product.name.toLowerCase().includes(searchFilter.toLowerCase());
+
+            if (selectedCategories.length === 0 && selectedServices.length === 0 && !selectedDiscount) {
+                return nameMatch;
+            }
+
+            const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(product.categoryName);
+            const serviceMatch = selectedServices.length === 0 || selectedServices.includes(product.service.toString());
+            const discountMatch = !selectedDiscount || (product.discount > 0);
+
+            return nameMatch && categoryMatch && serviceMatch && discountMatch;
         }
+
+        function getSelectedCheckboxes(categoryOrService) {
+            const selected = [];
+            document.querySelectorAll(`input[name="${categoryOrService}"]:checked`).forEach(input => {
+                selected.push(input.value);
+            });
+            return selected;
+        }
+
+        function calculateFinalPrice(product) {
+            if (product.discount > 0) {
+                return product.sale_price - (product.sale_price * (product.discount / 100));
+            } else {
+                return product.sale_price;
+            }
+        }
+
+        function applyFilter() {
+            const selectedCategories = getSelectedCheckboxes('category');
+            const selectedServices = getSelectedCheckboxes('service');
+            const selectedDiscount = document.querySelector('input[name="discount"]').checked;
+            const searchFilter = document.querySelector('input[type="text"]').value.toLowerCase();
+            const products = @json($products);
+
+            products.forEach(product => {
+                const productElement = document.querySelector(`[data-product-id="${product.id}"]`);
+                const shouldShow = searchProducts(product, searchFilter, selectedCategories, selectedServices,
+                    selectedDiscount);
+                productElement.style.display = shouldShow ? 'block' : 'none';
+            });
+        }
+
+        window.addEventListener('load', () => {
+            applyFilter();
+        });
+
+        document.querySelectorAll('input[type="checkbox"]').forEach(input => {
+            input.addEventListener('change', () => {
+                applyFilter();
+            });
+        });
+
+        document.querySelector('input[type="text"]').addEventListener('input', () => {
+            applyFilter();
+        });
     </script>
 @stop

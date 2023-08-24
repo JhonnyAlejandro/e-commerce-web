@@ -89,7 +89,32 @@ class ProductController extends Controller
      */
     public function update(ProductFormRequest $request, string $id)
     {
-        dd('update');
+        $products = Product::findOrFail($id);
+
+        if ($products->image) {
+            Storage::delete(str_replace('/storage', 'public', $products->image));
+        }
+
+        if ($request->hasFile('image')) {
+            $image = Storage::url($request->file('image')->store('public/images'));
+        } else {
+            $image = $products->image;
+        }
+
+        $products->code = $request->code;
+        $products->name = $request->name;
+        $products->reference = $request->reference;
+        $products->category = $request->category;
+        $products->provider = $request->provider;
+        $products->service = $request->service;
+        $products->existence = $request->existence;
+        $products->sale_price = $request->price;
+        $products->discount = $request->discount;
+        $products->description = $request->description;
+        $products->image = $image;
+        $products->update();
+
+        return redirect()->route('products.index')->with('notification', 'El producto fue editado exitosamente');
     }
 
     /**
