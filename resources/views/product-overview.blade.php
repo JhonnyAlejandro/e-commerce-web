@@ -150,7 +150,51 @@
     <style>
         .stars input:hover ~ label svg,
         .stars input:checked ~ label svg {
-            color: rgb(250, 204, 21); /* Color de la estrella activa */
+            color: rgb(250, 204, 21);
+        }
+
+        .disabled-button {
+            background-color: #ccc;
+            color: #666;
+        }
+
+        .disabled-button:hover {
+            background-color: #ccc;
         }
     </style>
+@stop
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            const commentInput = $("#comment");
+            const stars = $(".stars input");
+            const submitButton = $("form button[type='submit']");
+
+            function checkValidity() {
+                const isCommentEmpty = commentInput.val().trim() === "";
+                const isStarSelected = $(".stars input:checked").length > 0;
+
+
+                submitButton.prop("disabled", isCommentEmpty || !isStarSelected);
+
+
+                if (submitButton.prop("disabled")) {
+                    submitButton.addClass("disabled-button");
+                } else {
+                    submitButton.removeClass("disabled-button");
+                }
+            }
+
+            commentInput.on("input", checkValidity);
+
+            stars.on("click", function() {
+                $(".stars label").removeClass("selected");
+                $(this).closest("label").addClass("selected");
+                checkValidity();
+            });
+
+            checkValidity();
+        });
+    </script>
 @stop

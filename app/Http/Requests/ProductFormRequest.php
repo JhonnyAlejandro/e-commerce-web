@@ -28,9 +28,9 @@ class ProductFormRequest extends FormRequest
             'category' => 'required',
             'provider' => 'required',
             'service' => 'required',
-            'existence' => 'required|numeric',
-            'price' => 'required|numeric',
-            'discount' => 'required|numeric',
+            'existence' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0',
+            'discount' => 'required|numeric|min:0|max:100',
             'description' => 'required',
             'image' => 'required|image|max:500'
         ];
@@ -53,12 +53,16 @@ class ProductFormRequest extends FormRequest
 
             'existence.required' => 'La existencia es obligatoria.',
             'existence.numeric' => 'La existencia debe tener valores numéricos.',
+            'existence.min' => 'La existencia debe tener valores positivos.',
 
             'price.required' => 'El precio base es obligatorio.',
             'price.numeric' => 'El precio base debe tener valores numéricos.',
+            'price.min' => 'El precio base debe tener valores positivos.',
 
             'discount.required' => 'El descuento es obligatorio.',
             'discount.numeric' => 'El descuento debe tener valores numéricos.',
+            'discount.min' => 'El descuento debe tener valores positivos.',
+            'discount.max' => 'El descuento debe tener valores menores 100.',
 
             'description.required' => 'La descripción es obligatoria.',
 

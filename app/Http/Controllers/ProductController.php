@@ -22,8 +22,10 @@ class ProductController extends Controller
         $products = Product::join('references', 'products.reference', '=', 'references.id')
             ->join('categories', 'products.category', '=', 'categories.id')
             ->join('providers', 'products.provider', '=', 'providers.id')
-            ->select('products.*', 'references.name as referenceName', 'categories.name as categoryName', 'providers.first_name', 'providers.last_name')
+            ->select('products.*', 'categories.name as categoryName', 'categories.state', 'references.name as referenceName', 'references.state', 'providers.first_name', 'providers.last_name')
             ->where('products.state', 1)
+            ->where('categories.state', 1)
+            ->where('references.state', 1)
             ->get();
 
         $references = Reference::where('state', 1)->get();
