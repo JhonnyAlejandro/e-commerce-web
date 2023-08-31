@@ -11,27 +11,27 @@
             <div class="flex justify-end gap-8 mt-14 md:justify-start md:-mt-44 md:pl-20 xl:mt-0 xl:pl-0">
                 <div class="flex-none w-44 ml-auto pt-32 md:ml-0 md:pt-80 xl:pt-36 xl:order-last">
                     <div class="relative">
-                        <img src="{{ asset('images/d.jpg') }}" class="aspect-[2/3] w-full bg-gray-900/[0.05] object-cover rounded-xl shadow-lg">
+                        <img src="{{ asset('images/e.jpg') }}" class="aspect-[2/3] w-full bg-gray-900/[0.05] object-cover rounded-xl shadow-lg">
                         <div class="absolute inset-0 ring-1 ring-inset ring-gray-900/[0.1] rounded-xl"></div>
                     </div>
                 </div>
                 <div class="flex-none space-y-8 w-44 mr-auto md:mr-0 md:pt-52 xl:pt-36">
                     <div class="relative">
-                        <img src="{{ asset('images/e.jpg') }}" class="aspect-[2/3] w-full bg-gray-900/[0.05] object-cover rounded-xl shadow-lg">
+                        <img src="{{ asset('images/f.jpg') }}" class="aspect-[2/3] w-full bg-gray-900/[0.05] object-cover rounded-xl shadow-lg">
                         <div class="absolute inset-0 ring-1 ring-inset ring-gray-900/[0.1] rounded-xl"></div>
                     </div>
                     <div class="relative">
-                        <img src="{{ asset('images/f.jpg') }}" class="aspect-[2/3] w-full bg-gray-900/[0.05] object-cover rounded-xl shadow-lg">
+                        <img src="{{ asset('images/g.jpg') }}" class="aspect-[2/3] w-full bg-gray-900/[0.05] object-cover rounded-xl shadow-lg">
                         <div class="absolute inset-0 ring-1 ring-inset ring-gray-900/[0.1] rounded-xl"></div>
                     </div>
                 </div>
                 <div class="flex-none space-y-8 w-44 pt-32 md:pt-0">
                     <div class="relative">
-                        <img src="{{ asset('images/g.jpg') }}" class="aspect-[2/3] w-full bg-gray-900/[0.05] object-cover rounded-xl shadow-lg">
+                        <img src="{{ asset('images/h.jpg') }}" class="aspect-[2/3] w-full bg-gray-900/[0.05] object-cover rounded-xl shadow-lg">
                         <div class="absolute inset-0 ring-1 ring-inset ring-gray-900/[0.1] rounded-xl"></div>
                     </div>
                     <div class="relative">
-                        <img src="{{ asset('images/h.jpg') }}" class="aspect-[2/3] w-full bg-gray-900/[0.05] object-cover rounded-xl shadow-lg">
+                        <img src="{{ asset('images/i.jpg') }}" class="aspect-[2/3] w-full bg-gray-900/[0.05] object-cover rounded-xl shadow-lg">
                         <div class="absolute inset-0 ring-1 ring-inset ring-gray-900/[0.1] rounded-xl"></div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="mt-32">
-        <img src="{{ asset('images/i.jpg') }}" class="aspect-[5/2] w-full object-cover">
+        <img src="{{ asset('images/j.jpg') }}" class="aspect-[5/2] w-full object-cover">
     </div>
     <div class="max-w-7xl my-32 mx-auto px-6 xl:px-8">
         <h3 class="text-4xl font-semibold text-gray-900">Nuestros valores</h3>

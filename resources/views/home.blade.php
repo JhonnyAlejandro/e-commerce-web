@@ -21,12 +21,12 @@
                 </div>
                 <div class="w-full h-48 bg-white"></div>
             </div>
-            <div class="relative py-32">
+            <div class="relative pt-40 pb-24">
                 <h1 class="text-4xl font-semibold text-white md:text-5xl lg:text-6xl">¡Vive la magia del juego en Estación Arcoiris Kids!</h1>
             </div>
         </div>
         <section class="relative -mt-96 md:mt-0">
-            <div class="grid grid-cols-1 gap-y-6 max-w-md mx-auto px-4 md:grid-cols-2 md:gap-y-0 md:gap-x-9 md:max-w-5xl md:px-6 xl:gap-x-20 xl:px-8">
+            <div class="grid grid-cols-1 gap-y-6 max-w-md mx-auto px-4 md:grid-cols-3 md:gap-y-0 md:gap-x-9 md:max-w-7xl md:px-6 xl:gap-x-8 xl:px-8">
                 <div class="group relative h-96 bg-white rounded-lg shadow-xl md:h-auto md:aspect-[4/5]">
                     <div>
                         <div class="absolute overflow-hidden inset-0 rounded-lg">
@@ -37,7 +37,7 @@
                         </div>
                         <div class="absolute inset-0 flex items-end p-6 rounded-lg">
                             <div>
-                                <p class="text-sm text-white">Alquiler de</p>
+                                <p class="text-sm text-white">Venta y alquiler de</p>
                                 <h3 class="mt-1 text-lg font-semibold text-white">
                                     <p>
                                         <span class="absolute inset-0"></span>
@@ -58,11 +58,32 @@
                         </div>
                         <div class="absolute inset-0 flex items-end p-6 rounded-lg">
                             <div>
-                                <p class="text-sm text-white">Decoraciones para</p>
+                                <p class="text-sm text-white">Organización de</p>
                                 <h3 class="mt-1 text-lg font-semibold text-white">
                                     <p>
                                         <span class="absolute inset-0"></span>
-                                        Cumpleaños
+                                        Fiestas y eventos
+                                    </p>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative h-96 bg-white rounded-lg shadow-xl md:h-auto md:aspect-[4/5]">
+                    <div>
+                        <div class="absolute overflow-hidden inset-0 rounded-lg">
+                            <div class="absolute overflow-hidden inset-0 group-hover:opacity-75">
+                                <img src="{{ asset('images/d.jpg') }}" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
+                        </div>
+                        <div class="absolute inset-0 flex items-end p-6 rounded-lg">
+                            <div>
+                                <p class="text-sm text-white">Shows y espectáculos</p>
+                                <h3 class="mt-1 text-lg font-semibold text-white">
+                                    <p>
+                                        <span class="absolute inset-0"></span>
+                                        Para niños
                                     </p>
                                 </h3>
                             </div>
