@@ -4,8 +4,12 @@
             LOGO
         </div>
         <x-vertical-navigation />
-        <div class="-mx-6">
-            <button class="w-full py-3 px-6 font-semibold leading-7 text-gray-900 hover:bg-gray-50">Jhonny Castaño</button>
+        <div class="-mx-6" for="navbarDropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{route('profile.show')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <button class="w-full py-3 px-6 font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                    {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                </button>
+            </a>
         </div>
     </div>
 </div>

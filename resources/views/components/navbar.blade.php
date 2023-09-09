@@ -19,7 +19,7 @@
                         <a href="{{ route('home') }}" class="flex items-center text-lg font-medium text-gray-700 hover:text-gray-900">Inicio</a>
                         <a href="{{ route('store') }}" class="flex items-center text-lg font-medium text-gray-700 hover:text-gray-900">Tienda</a>
                         <a href="{{ url('/sobre-nosotros') }}" class="flex items-center text-lg font-medium text-gray-700 hover:text-gray-900">Sobre nosotros</a>
-                        <a href="{{ route('contact') }}" class="flex items-center text-lg font-medium text-gray-700 hover:text-gray-900">Contactanos</a>
+                        <a href="{{ url('contactanosView') }}" class="flex items-center text-lg font-medium text-gray-700 hover:text-gray-900">Contactanos</a>
                     </div>
                 </div>
                 <div class="flex items-center ml-auto">
@@ -65,7 +65,7 @@
                 <a href="{{ route('home') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900">Inicio</a>
                 <a href="{{ route('store') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900">Tienda</a>
                 <a href="{{ url('/sobre-nosotros') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900">Sobre nosotros</a>
-                <a href="{{ route('contact') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900">Contactanos</a>
+                <a href="{{ url('contactanosView') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900">Contactanos</a>
             </div>
             <div class="pt-4 pb-3 border-gray-200 border-t-2">
                 @if (Auth::guest())

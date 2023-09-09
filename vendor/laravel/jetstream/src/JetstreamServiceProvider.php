@@ -20,7 +20,7 @@ use Laravel\Jetstream\Http\Livewire\NavigationMenu;
 use Laravel\Jetstream\Http\Livewire\TeamMemberManager;
 use Laravel\Jetstream\Http\Livewire\TwoFactorAuthenticationForm;
 use Laravel\Jetstream\Http\Livewire\UpdatePasswordForm;
-use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
+use App\Http\Livewire\UpdateProfileInformationForm;
 use Laravel\Jetstream\Http\Livewire\UpdateTeamNameForm;
 use Laravel\Jetstream\Http\Middleware\ShareInertiaData;
 use Livewire\Livewire;

@@ -1,6 +1,11 @@
 @extends('layouts.layout')
 
 @section('content')
+    @if (session('notification'))
+        <x-notification>
+            {{ session('notification') }}
+        </x-notification>
+    @endif
     <div class="relative isolate">
         <div class="grid grid-cols-1 max-w-7xl mx-auto xl:grid-cols-2">
             <div class="relative pt-32 px-6 pb-20 xl:static xl:py-48 xl:px-8">
@@ -46,7 +51,7 @@
                     </dl>
                 </div>
             </div>
-            <form action="" class="pt-20 px-6 pb-24 md:pb-32 xl:py-48 xl:px-8">
+            <form action="{{ route('contact') }}" method="GET" class="pt-20 px-6 pb-24 md:pb-32 xl:py-48 xl:px-8">
                 <div class="max-w-xl mx-auto xl:max-w-lg xl:mr-0">
                     <div class="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
                         <div>
@@ -63,7 +68,7 @@
                         </div>
                         <div class="md:col-span-2">
                             <x-label for="phone" value="{{ __('Número de teléfono') }}" />
-                            <x-input id="phone" class="block mt-1 w-full" type="email" name="phone" required />
+                            <x-input id="phone" class="block mt-1 w-full" type="number" name="phone" required />
                         </div>
                         <div class="md:col-span-2">
                             <x-label for="message" value="{{ __('Mensaje') }}" />

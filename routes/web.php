@@ -34,8 +34,11 @@ Route::view('/politicas', 'policy');
 Route::view('/terminos', 'terms');
 Route::view('/preguntas', 'questions');
 Route::view('/cookies', 'cookies');
+Route::view('/contactanosView', 'contact-us');
 
 Route::resource('/productos', App\Http\Controllers\ProductController::class)->names('products')->middleware('auth');
 Route::resource('/categorias', App\Http\Controllers\CategoryController::class)->names('categories')->middleware('auth');
 Route::resource('/referencias', App\Http\Controllers\ReferenceController::class)->names('references')->middleware('auth');
 Route::get('/ventas', [App\Http\Controllers\SaleController::class, 'index'])->name('sales')->middleware('auth');
+Route::get('/getCitiesAndDepartment/{departmentId}',[App\Http\Controllers\CitiesDepartmentsController::class, 'getCities'])->name('cities');
+Route::get('/getCitiesAndDepartment/',[App\Http\Controllers\CitiesDepartmentsController::class, 'getDepartments'])->name('departments');

@@ -13,10 +13,59 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     </head>
     <body class="font-sans antialiased">
         <div>
             {{ $slot }}
         </div>
     </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                    type: 'GET',
+                    url: '{{route('departments')}}',
+                    dataType:"json",
+                    success: function(data) {
+                        console.log(data);
+                        data.forEach(function (department) {
+                            const departmentSelect = document.getElementById("department");
+                            const option = document.createElement("option");
+                            option.value = department.id;
+                            option.text = department.name;
+                            departmentSelect.appendChild(option);
+                        });
+                    }
+                });
+
+            department.addEventListener('change', () => {
+                let departmentId = department.value;
+                if (departmentId > 0) {
+                    city.innerHTML = "Elige una ciudad";
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{route('cities', ':departmentId')}}'.replace(':departmentId', departmentId),
+                        dataType:"json",
+                        success: function(data) {
+                            data.forEach(function (city) {
+                                const citySelect = document.getElementById("city");
+                                const option = document.createElement("option");
+                                option.value = city.id;
+                                option.text = city.name;
+                                citySelect.appendChild(option);
+                            });
+                        }
+                    });
+                } else {
+                    city.innerHTML = "Elige una ciudad";
+                    const citySelect = document.getElementById("city");
+                    const option = document.createElement("option");
+                    option.value = 0;
+                    option.text = "Selecciona una ciudad";
+                    citySelect.appendChild(option);
+                }
+            });
+        });
+    </script>
 </html>

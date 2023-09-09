@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('dashboard')
+
+@section('content')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
@@ -39,7 +41,18 @@
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.delete-user-form')
                 </div>
+
+                <x-section-border />
             @endif
+
+
+            <form method="POST" action="{{ route('logout') }}" x-data>
+                @csrf
+
+                <x-danger-button class="ml-3" wire:click="deleteUser" wire:loading.attr="disabled">
+                    {{ __('Cerrar sesión') }}
+                </x-danger-button>
+            </form>
         </div>
     </div>
-</x-app-layout>
+@endsection

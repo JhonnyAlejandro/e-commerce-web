@@ -10,13 +10,27 @@
             @csrf
 
             <div>
-                <x-label for="name" value="{{ __('First Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus autocomplete="first_name" />
+                <x-label for="first_name" value="{{ __('First Name') }}" />
+                <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus autocomplete="first_name" />
             </div>
 
             <div class="mt-4">
-                <x-label for="name" value="{{ __('Last Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="last_name" />
+                <x-label for="last_name" value="{{ __('Last Name') }}" />
+                <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="last_name" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="department" value="{{ __('Departamento') }}" />
+                <x-select id="department" type="text" class="mt-1 block w-full"  required autofocus>
+                </x-select>
+                <x-input-error for="department" class="mt-2" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="city" value="{{ __('Ciudad') }}" />
+                <x-select id="city" type="text" name="city" class="mt-1 block w-full" required autofocus>
+                </x-select>
+                <x-input-error for="city" class="mt-2" />
             </div>
 
             <div class="mt-4">

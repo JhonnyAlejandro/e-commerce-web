@@ -1,10 +1,10 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        {{ __('Información de perfil') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{ __('Actualice la información de perfil y la dirección de correo electrónico de su cuenta.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -52,17 +52,62 @@
             </div>
         @endif
 
-        <!-- Name -->
+        <!-- First_name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Name') }}" />
-            <x-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
-            <x-input-error for="name" class="mt-2" />
+            <x-label for="first_name" value="{{ __('Nombre') }}" />
+            <x-input id="first_name" type="text" class="mt-1 block w-full" wire:model.defer="state.first_name" autocomplete="first_name" />
+            <x-input-error for="first_name" class="mt-2" />
+        </div>
+
+        <!-- Last_name -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="last_name" value="{{ __('Apellidos') }}" />
+            <x-input id="last_name" type="text" class="mt-1 block w-full" wire:model.defer="state.last_name" autocomplete="last_name" />
+            <x-input-error for="last_name" class="mt-2" />
+        </div>
+
+        <!-- Address -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="address" value="{{ __('Dirección') }}" />
+            <x-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.address" autocomplete="address" />
+            <x-input-error for="address" class="mt-2" />
+        </div>
+
+        <!-- Departamento -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="department" value="{{ __('Departamento') }}" />
+            <x-select id="department" type="text" class="mt-1 block w-full" wire:model.defer="estado.department" wire:change="getCities()" autocomplete="department">
+                <option value="0">Elige un departamento</option>
+                @foreach ($departments as $dep)
+                    <option value="{{ $dep->id }}" {{ $userCityAndDepartment->department == $dep->id ? 'selected' : '' }}>{{ $dep->name }}</option>
+                @endforeach
+            </x-select>
+            <x-input-error for="department" class="mt-2" />
+        </div>
+
+        <!-- Ciudad -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="city" value="{{ __('Ciudad') }}" />
+            <x-select id="city" type="text" class="mt-1 block w-full" wire:model.defer="state.city" autocomplete="city">
+                <option value="0">Elige una ciudad</option>
+                @foreach ($cities as $city)
+                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                @endforeach
+            </x-select>
+            <x-input-error for="city" class="mt-2" />
+        </div>
+
+        <!-- Phone -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="phone" value="{{ __('Télefono') }}" />
+            <x-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="state.phone" autocomplete="phone" />
+            <x-input-error for="phone" class="mt-2" />
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="email" value="{{ __('Email') }}" />
-            <x-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" autocomplete="username" />
+            <x-label for="email" value="{{ __('Correo') }}" />
+            <x-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" autocomplete="username" disabled/>
             <x-input-error for="email" class="mt-2" />
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
