@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 
-class AuthController extends Controller
+class API extends Controller
 {
     public function login(Request $request)
     {
