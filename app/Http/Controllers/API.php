@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
+use App\Models\Sale;
 
 class API extends Controller
 {
@@ -29,5 +30,15 @@ class API extends Controller
         $response = ['message' => 'La dirección de correo electrónico y/o la contraseña son incorrectas.'];
 
         return response()->json($response, 400);
+    }
+
+    public function sales()
+    {
+        $sale = Sale::join('users', 'sales.user', '=', 'users.id')
+        ->select('users.first_name as firstName', 'users.last_name as lastName', 'sales.total_sale', 'sales.state')
+        ->where('sales.state', 1)
+        ->get();
+
+        return response()->json($sale);
     }
 }

@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login',[App\Http\Controllers\API::class, 'login']);
+Route::get('/sales',[App\Http\Controllers\API::class, 'sales']);
