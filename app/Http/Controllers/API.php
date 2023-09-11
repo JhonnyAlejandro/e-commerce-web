@@ -35,7 +35,9 @@ class API extends Controller
     public function sales()
     {
         $sale = Sale::join('users', 'sales.user', '=', 'users.id')
-        ->select('users.first_name as firstName', 'users.last_name as lastName', 'sales.total_sale', 'sales.state')
+        ->join('payment_methods', 'sales.payment_method', '=', 'payment_methods.id')
+        ->join('status', 'sales.status', '=', 'status.id')
+        ->select('sales.code', 'users.first_name as firstName', 'users.last_name as lastName', 'status.name', 'sales.total_sale', 'sales.state', 'sales.created_at')
         ->where('sales.state', 1)
         ->get();
 
