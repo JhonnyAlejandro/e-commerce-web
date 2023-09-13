@@ -12,7 +12,7 @@
                     </svg>
                 </button>
                 <div class="flex ml-4 lg:ml-0">
-                    <a href="{{ route('home') }}">LOGO</a>
+                    <a href="{{ route('home') }}"><img src="{{asset('images/logo.png')}}" width="90px"></a>
                 </div>
                 <div class="hidden lg:block lg:self-stretch lg:ml-8">
                     <div class="flex h-full space-x-8">
@@ -46,16 +46,8 @@
                             @include('favorites-list')
                         </template>
                     </div>
-                    <div x-data="{ modal: false }" class="flow-root ml-4 lg:ml-6">
-                        <button x-on:click="modal =! modal" type="button" class="group flex items-center -m-2 p-2">
-                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="shrink-0 w-7 h-7 text-gray-400 group-hover:text-gray-500">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
-                            </svg>
-                            <span class="ml-2 text-lg font-medium text-gray-700">0</span>
-                        </button>
-                        <template x-teleport="body">
-                            @include('shopping-cart')
-                        </template>
+                    <div class="flow-root ml-4 lg:ml-6">
+                        @livewire('shopcart')
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SalesHistoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,3 +42,14 @@ Route::resource('/referencias', App\Http\Controllers\ReferenceController::class)
 Route::get('/ventas', [App\Http\Controllers\SaleController::class, 'index'])->name('sales')->middleware('auth');
 Route::get('/getCitiesAndDepartment/{departmentId}',[App\Http\Controllers\CitiesDepartmentsController::class, 'getCities'])->name('cities');
 Route::get('/getCitiesAndDepartment/',[App\Http\Controllers\CitiesDepartmentsController::class, 'getDepartments'])->name('departments');
+
+//Rutas de sales
+Route::resource('/Historial', App\Http\Controllers\saleshistoryController::class)->names('history');
+Route::get('/factura', [App\Http\Controllers\InvoiceController::class, 'checkout'])->name('factura');
+Route::get('/sales/history', [saleshistoryController::class, 'index'])->name('sales.history');
+Route::post('/actualizar-estado', [saleshistoryController::class, 'updateStatus'])->name('sales.change');
+Route::get('/carrito', [App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
+Route::delete('/carrito/{product}', [App\Http\Controllers\CartController::class, 'removeProduct'])->name('cart.remove');
+Route::get('/get-cities/{departamentId}', [App\Http\Controllers\CartController::class, 'getCities'])->name('get.cities');
+Route::post('/procesar-orden', [App\Http\Controllers\CartController::class, 'procesarOrden'])->name('procesar.orden');
+Route::post('/procesar-compra', [App\Http\Controllers\CartController::class, 'procesarCompra'])->name('procesar.compra');
