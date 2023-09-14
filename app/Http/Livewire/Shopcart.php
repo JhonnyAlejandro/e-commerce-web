@@ -74,7 +74,7 @@ class Shopcart extends Component
 
     private function updateLocalStorage()
     {
-        session(['carrito' => $this->products]);
-        $this->emit('updateCarrito', $this->products); // Emitir evento personalizado con los productos del carrito
+        session(['shopcart' => $this->products]);
+        $this->emit('updateCarrito', $this->products); // Emitir evento personalizado con los productos del carrito
     }
 }

@@ -1,34 +1,34 @@
 @extends('dashboard')
 
 @section('content')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
     <div class="bg-white shadow-lg rounded-lg">
         <div class="py-5 px-6 border-gray-200 border-b-2">
             <div class="flex items-center justify-between">
                 <h2 class="text-2xl font-semibold">Historial de pedidos</h2>
                 <form action="{{ route('sales.history') }}" method="GET">
-                    
+
                     <div class="relative flex items-center">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                            
+
                             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6 text-gray-400">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
                             </svg>
                         </span>
-                        
+
                         <input type="date" name="start_date"
-                        
                             class="block w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg bg-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
                             placeholder="Start Date">
-                           
+
                         <input type="date" name="end_date"
                             class="block w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg bg-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
                             placeholder="End Date">
                         <button type="submit" class="ml-2 px-4 py-2 bg-indigo-500 text-white rounded-lg">Buscar</button>
-                        <button class="ml-2 px-4 py-2 bg-indigo-500 text-white rounded-lg" href="{{ route('history.index') }}">Refrescar</button>
+                        <button class="ml-2 px-4 py-2 bg-indigo-500 text-white rounded-lg"
+                            href="{{ route('history.index') }}">Refrescar</button>
                     </div>
                 </form>
 
@@ -68,8 +68,12 @@
                             <tr>
                                 <th scope="col" class="w-2/5 py-3 pr-8 font-normal xl:w-1/3">Producto</th>
                                 <th scope="col" class="hidden w-1/5 py-3 pr-8 font-normal md:table-cell">Precio</th>
+                                @if (!$sale->fecha_inicio == null)
+                                    <th scope="col" class="w-2/5 py-3 pr-8 font-normal xl:w-1/3">Fecha de servicio</th>
+                                @endif
                                 <th scope="col" class="hidden py-3 pr-8 font-normal md:table-cell">Estado</th>
-                                <th scope="col" class="w-0 py-3 font-normal text-right">Información</th>
+                                <th scope="col" class="hidden py-3 pr-8 font-normal md:table-cell">Información</th>
+                                <th scope="col" class="hidden py-3 pr-8 font-normal md:table-cell">Datos de envio</th>
                             </tr>
                         </thead>
                         <tbody class="text-lg border-gray-200 border-b-2 md:border-t-2">
@@ -80,16 +84,34 @@
                                             class="w-16 h-16 rounded">
                                         <div>
                                             <p class="font-semibold pl-4 text-gray-900">{{ $sale->name }}</p>
-                                            <p class="mt-1 md:hidden">{{ $sale->sale_price }}</p>
                                         </div>
                                     </div>
                                 </td>
+                                
                                 <td class="hidden py-6 pr-8 md:table-cell">{{ $sale->total_price }}</td>
+                                @if (!$sale->fecha_inicio == null)
+                                    <td class="hidden py-6 pr-8 md:table-cell">
+                                        {{ \Carbon\Carbon::parse($sale->fecha_inicio)->isoFormat('MMM DD, YYYY, hh:mm a') }}</br>{{ \Carbon\Carbon::parse($sale->fecha_fin)->isoFormat('MMM DD, YYYY, hh:mm a') }}
+                                    </td>
+                                @endif
                                 <td class="hidden py-6 pr-8 md:table-cell">{{ $sale->status_name }}</td>
-                                <td class="py-6 font-semibold text-right whitespace-nowrap">
-                                    <button class=" p-4 ml-7 rounded-lg  text-white hover:bg-green-400 bg-green-600 agendar-button" data-sale-id="{{ $sale->sale_id }}">
-                                        Agendar
-                                    </button>
+                    
+                                <td class="hidden py-6 pr-8 md:table-cell">
+                                    @can('products.index')
+                                        @if ($sale->status == 3)
+                                        <button
+                                            class="p-4 rounded-lg  text-white hover:bg-indigo-400 bg-indigo-600 agendar-button"
+                                            data-sale-id="{{ $sale->sale_id }}">
+                                            Agendar
+                                        </button>
+                                        @endif
+                                    @endcan
+                                </td>
+                                <td x-data="{ modal: false, sale: {} }" class="hidden py-6 pr-8 md:table-cell">
+                                    <button x-on:click="modal =! modal" class="text-indigo-600 hover:text-indigo-500">Ver <span class="hidden xl:inline">datos</span></button>
+                                    <template x-teleport="body">
+                                        @include('modules.sales.details-quickview')
+                                    </template>
                                 </td>
                             </tr>
                         </tbody>
@@ -104,13 +126,7 @@
     
         document.addEventListener('DOMContentLoaded', function () {
     
-            // Oculta los botones de agendar para las ventas ya agendadas
-            document.querySelectorAll('.agendar-button').forEach(function (button) {
-                const saleId = button.getAttribute('data-sale-id');
-                if (localStorage.getItem('ventaAgendada_' + saleId)) {
-                    button.style.display = 'none';
-                }
-            });
+          
     
             // Escucha el clic en el botón "Agendar"
             document.querySelectorAll('.agendar-button').forEach(function (button) {
@@ -157,8 +173,7 @@
                                     ).then(() => {
     
                                         location.reload();
-                                        button.style.display = 'none';
-                                        localStorage.setItem('ventaAgendada_' + saleId, true); // Marca la venta como agendada en el almacenamiento local
+                                        
                                     });
                                 } else {
                                     // Error en la actualización
@@ -178,4 +193,4 @@
             });
         });
     </script>
-@stop
+@endsection

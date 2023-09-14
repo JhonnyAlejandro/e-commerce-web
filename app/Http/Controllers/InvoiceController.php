@@ -36,7 +36,7 @@ class InvoiceController extends Controller
         $sale = Sale::join('users', 'sales.user', '=', 'users.id')
         ->join('sales_details', 'sales.id', '=', 'sales_details.sale')
         ->join('products', 'products.id', '=', 'sales_details.product')
-        ->join('shipping_informations', 'sales.id', '=', 'shipping_informations.sales')
+        ->join('shipping_informations', 'sales.id', '=', 'shipping_informations.sale')
         ->join('cities', 'shipping_informations.city', '=', 'cities.id')
         ->leftJoin('departments', 'cities.department', '=', 'departments.id')
         ->where('sales.id', $sale->id)
@@ -48,6 +48,7 @@ class InvoiceController extends Controller
             'sales_details.*',
             'products.sale_price',
             'sales_details.total_price',
+            'sales.total_sale',
             'products.name',
             'products.service', // Asume que hay un campo service_type en la tabla de productos para identificar el servicio
             'shipping_informations.first_name',

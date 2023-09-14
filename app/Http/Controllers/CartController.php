@@ -31,7 +31,7 @@ class CartController extends Controller
     public function index()
     {
         // Obtener los productos del carrito de la sesión
-        $productsCart = session('carrito', []);
+        $productsCart = session('shopcart', []);
 
         // Obtener los detalles completos de los productos según los ids del carrito
         $products = Product::whereIn('id', array_keys($productsCart))->get();
@@ -79,12 +79,12 @@ class CartController extends Controller
 
     public function removeProduct(Request $request, $product)
     {
-        $cart = $request->session()->get('carrito', []);
+        $cart = $request->session()->get('shopcart', []);
 
         if (isset($cart[$product])) {
             $price = is_array($cart[$product]) ? $cart[$product]['price'] : 0;
             unset($cart[$product]);
-            $request->session()->put('carrito', $cart);
+            $request->session()->put('shopcart', $cart);
 
             // Actualizar el subtotal en la sesión
             $subtotal = $request->session()->get('subtotal', 0);
@@ -108,12 +108,12 @@ class CartController extends Controller
 
     public function redirect(Request $request, $product)
     {
-        $cart = $request->session()->get('carrito', []);
+        $cart = $request->session()->get('shopcart', []);
 
         if (isset($cart[$product])) {
             $price = is_array($cart[$product]) ? $cart[$product]['price'] : 0;
             unset($cart[$product]);
-            $request->session()->put('carrito', $cart);
+            $request->session()->put('shopcart', $cart);
 
             // Actualizar el subtotal en la sesión
             $subtotal = $request->session()->get('subtotal', 0);
@@ -275,6 +275,7 @@ class CartController extends Controller
                 $productModel->existence = $updateExistencia;
                 $productModel->save();
             }
+            
 
             
             //llenar tabla de Shipping_information
@@ -288,21 +289,21 @@ class CartController extends Controller
             $shippingInfo->address = $form['address'];
             $shippingInfo->city = $form['city'];
             $shippingInfo->second_address = $form['address2'];
-            $shippingInfo->sales = $sale->id;
+            $shippingInfo->sale = $sale->id;
 
             $shippingInfo->phone = $form['phone'];
 
             $shippingInfo->save();
+            
 
 
             // Borrar los productos del carrito después de la compra completada
-            session()->forget('carrito');
+            session()->forget('shopcart');
             session()->forget('subtotal');
 
             return response()->json(['message' => 'Orden procesada con éxito']);
         } else {
             return response()->json(['error' => 'Error en la transacción de PayPal'], 500);
         }
-
     }
 }
