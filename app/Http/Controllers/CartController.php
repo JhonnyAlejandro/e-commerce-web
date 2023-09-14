@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-use App\Models\citie;
-use App\Models\department;
+use App\Models\Citie;
+use App\Models\Department;
 use App\Models\Product;
 use App\Models\Shipping_information;
 use Illuminate\Http\Request;
