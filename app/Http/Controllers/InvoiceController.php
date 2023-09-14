@@ -89,6 +89,7 @@ class InvoiceController extends Controller
         
             $htmlWithImage = '<img src="' . asset('images.png'). '" alt="Imagen de la factura" width="700" height="1000">';
         
+            File::delete($tempImagePath);
             
         } catch (\Exception $e) {
             $htmlWithImage = view('modules.sales.sale-bill', $data);
@@ -115,7 +116,7 @@ class InvoiceController extends Controller
             Session::put('facturas_enviadas', $facturasEnviadas);
         }
 
-        File::delete($tempImagePath);
+        
         File::delete($pdfPath);
         // Cargar la vista de la factura
         return view('modules.sales.sale-bill', compact('sale', 'total_price'));

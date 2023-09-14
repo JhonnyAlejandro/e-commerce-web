@@ -10,26 +10,32 @@
                 <h3 class="text-2xl font-semibold leading-7 text-center md:text-left">Datos de envío</h3>
             </div>
         </div>
-        <div class="p-6 w-full">
+        <div class="p-6 w-full overflow-x-auto">
             <!-- Component Start  -->
-            <div class="flex flex-col w-full border border-black">
-                <div class="flex flex-shrink-0 bg-indigo-500 text-white">
-                    <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>NOMBRE</span></div>
-                    <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>CEDULA</span></div>
-                    <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>CELULAR</span></div>
-                    <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>DEPARTAMENTO</span></div>
-                    <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>CIUDAD</span></div>
-                    <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>DIRECCION</span></div>
-                </div>
-                <div class="overflow-auto">
-                    <div class="flex flex-shrink-0">
-                        <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>{{$sale->first_name}} {{$sale->last_name}}</span></div>
-                        <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>{{$sale->identification_card}}</span></div>
-                        <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>{{$sale->phone}}</span></div>
-                        <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>{{$sale->department_name}}</span></div>
-                        <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>{{$sale->city_name}}</span></div>
-                        <div class="flex items-center flex-grow w-0 h-10 px-2 border-b border-l border-black"><span>{{$sale->address}}</span></div>
-                    </div>
+            <div class="flex flex-col w-full">
+                <div class="shadow-md overflow-x-auto">
+                    <table class="w-full table-auto">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2 bg-indigo-500 text-white">NOMBRE</th>
+                                <th class="px-4 py-2 bg-indigo-500 text-white">CEDULA</th>
+                                <th class="px-4 py-2 bg-indigo-500 text-white">CELULAR</th>
+                                <th class="px-4 py-2 bg-indigo-500 text-white">DEPARTAMENTO</th>
+                                <th class="px-4 py-2 bg-indigo-500 text-white">CIUDAD</th>
+                                <th class="px-4 py-2 bg-indigo-500 text-white">DIRECCION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-4 py-2">{{$sale->first_name}} {{$sale->last_name}}</td>
+                                <td class="px-4 py-2">{{$sale->identification_card}}</td>
+                                <td class="px-4 py-2">{{$sale->phone}}</td>
+                                <td class="px-4 py-2">{{$sale->department_name}}</td>
+                                <td class="px-4 py-2">{{$sale->city_name}}</td>
+                                <td class="px-4 py-2">{{$sale->address}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- Component End  -->
