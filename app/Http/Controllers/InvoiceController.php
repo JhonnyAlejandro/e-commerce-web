@@ -91,7 +91,7 @@ class InvoiceController extends Controller
         
             
         } catch (\Exception $e) {
-            $htmlWithImage = view('modules.sales.sale-bill');
+            $htmlWithImage = view('modules.sales.sale-bill', $data);
         }
 
         $pdf = Pdf::loadHtml($htmlWithImage);
