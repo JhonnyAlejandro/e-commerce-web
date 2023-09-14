@@ -22,7 +22,7 @@
                 <div class="w-full h-48 bg-white"></div>
             </div>
             <div class="relative pt-40 pb-24">
-                <h1 class="text-4xl font-semibold text-white md:text-5xl lg:text-6xl">¡Vive la magia del juego en Estación Arcoiris Kids!</h1>
+                <h1 class="text-4xl font-semibold text-white md:text-5xl lg:text-6xl">¡Viva!</h1>
             </div>
         </div>
         <section class="relative -mt-96 md:mt-0">
