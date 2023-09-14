@@ -31,6 +31,7 @@ class saleshistoryController extends Controller
                 'sales_details.start_date as fecha_inicio',
                 'sales_details.finish_date as fecha_fin',
                 'sales_details.*',
+                'sales_details.id as details_id',
                 'sales_details.total_price',
                 'products.name',
                 'status.name as status_name', 

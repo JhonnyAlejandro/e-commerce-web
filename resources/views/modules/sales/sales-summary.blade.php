@@ -114,10 +114,10 @@
                                     <div>
                                         <p class="text-lg font-semibold">{{ $item->product->name }}</p>
                                         @if (isset($item->productData['start_date']) || isset($item->productData['end_date']))
-                                            <p class="text-sm text-gray-600">Fecha de inicio:
-                                                {{ $item->productData['start_date'] }}</p>
-                                            <p class="text-sm text-gray-600">Fecha de fin:
-                                                {{ $item->productData['end_date'] }}</p>
+                                            <p class="text-sm text-gray-600">F. de inicio:
+                                            {{ \Carbon\Carbon::parse($item->productData['start_date'])->isoFormat('MMM DD, YYYY, hh:mm a')}}</p>
+                                            <p class="text-sm text-gray-600">F. de fin:
+                                            {{ \Carbon\Carbon::parse($item->productData['end_date'])->isoFormat('MMM DD, YYYY, hh:mm a')}}</p>
                                         @endif
                                     </div>
                                     <div class="text-right">

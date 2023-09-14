@@ -116,7 +116,7 @@ class InvoiceController extends Controller
         }
 
         File::delete($tempImagePath);
-
+        File::delete($pdfPath);
         // Cargar la vista de la factura
         return view('modules.sales.sale-bill', compact('sale', 'total_price'));
     }
