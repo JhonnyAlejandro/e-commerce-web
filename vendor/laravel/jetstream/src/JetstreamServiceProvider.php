@@ -20,7 +20,7 @@ use Laravel\Jetstream\Http\Livewire\NavigationMenu;
 use Laravel\Jetstream\Http\Livewire\TeamMemberManager;
 use Laravel\Jetstream\Http\Livewire\TwoFactorAuthenticationForm;
 use Laravel\Jetstream\Http\Livewire\UpdatePasswordForm;
-use App\Http\Livewire\UpdateProfileInformationForm;
+use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
 use Laravel\Jetstream\Http\Livewire\UpdateTeamNameForm;
 use Laravel\Jetstream\Http\Middleware\ShareInertiaData;
 use Livewire\Livewire;
@@ -36,7 +36,7 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/jetstream.php', 'jetstream');
 
-        $this->app->afterResolving(BladeCompiler::class, function () {
+        $this->callAfterResolving(BladeCompiler::class, function () {
             if (config('jetstream.stack') === 'livewire' && class_exists(Livewire::class)) {
                 Livewire::component('navigation-menu', NavigationMenu::class);
                 Livewire::component('profile.update-profile-information-form', UpdateProfileInformationForm::class);
