@@ -44,7 +44,7 @@ class API extends Controller
 
         $data = ['sales' => $sales];
 
-        $pdf = PDF::loadView('sales.pdf', $data);
+        $pdf = PDF::loadView('sales-pdf', $data);
 
         return $pdf->download('ventas.pdf');
     }
