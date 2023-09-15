@@ -44,7 +44,6 @@ class UpdateProfileInformationForm extends Component
     {
         $user = Auth::user();
 
-        // dd($user->email);
         $this->state = array_merge([
             'email' => $user->email,
         ], $user->withoutRelations()->toArray());

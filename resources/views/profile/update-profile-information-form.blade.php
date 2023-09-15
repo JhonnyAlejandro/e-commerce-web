@@ -77,7 +77,6 @@
         <div class="col-span-6 sm:col-span-4">
             <x-label for="department" value="{{ __('Departamento') }}" />
             <x-select id="department" type="text" class="mt-1 block w-full" wire:model.defer="estado.department" wire:change="getCities()" autocomplete="department">
-                <option value="0">Elige un departamento</option>
                 @foreach ($departments as $dep)
                     <option value="{{ $dep->id }}" {{ $userCityAndDepartment->department == $dep->id ? 'selected' : '' }}>{{ $dep->name }}</option>
                 @endforeach
