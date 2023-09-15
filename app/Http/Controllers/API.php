@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 
 use App\Models\User;
 use App\Models\Sale;
@@ -34,13 +35,17 @@ class API extends Controller
 
     public function sales()
     {
-        $sale = Sale::join('users', 'sales.user', '=', 'users.id')
+        $sales = Sale::join('users', 'sales.user', '=', 'users.id')
         ->join('payment_methods', 'sales.payment_method', '=', 'payment_methods.id')
         ->join('status', 'sales.status', '=', 'status.id')
         ->select('sales.code', 'users.first_name as firstName', 'users.last_name as lastName', 'status.name as statusName', 'sales.total_sale', 'sales.state', 'sales.created_at')
         ->where('sales.state', 1)
         ->get();
 
-        return response()->json($sale);
+        $data = ['sales' => $sales];
+
+        $pdf = PDF::loadView('sales.pdf', $data);
+
+        return $pdf->download('ventas.pdf');
     }
 }
