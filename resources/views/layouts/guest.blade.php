@@ -23,12 +23,19 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
+            function setCities(value, text) {
+                const citySelect = document.getElementById("city");
+                const option = document.createElement("option");
+                option.value = value;
+                option.text = text;
+                citySelect.appendChild(option);
+            }
+
             $.ajax({
                     type: 'GET',
                     url: '{{route('departments')}}',
                     dataType:"json",
                     success: function(data) {
-                        console.log(data);
                         data.forEach(function (department) {
                             const departmentSelect = document.getElementById("department");
                             const option = document.createElement("option");
@@ -36,34 +43,27 @@
                             option.text = department.name;
                             departmentSelect.appendChild(option);
                         });
+                    setCities(0, "Selecciona una ciudad");
                     }
                 });
 
             department.addEventListener('change', () => {
                 let departmentId = department.value;
                 if (departmentId > 0) {
-                    city.innerHTML = "Elige una ciudad";
+                    city.innerHTML = "";
                     $.ajax({
                         type: 'GET',
                         url: '{{route('cities', ':departmentId')}}'.replace(':departmentId', departmentId),
                         dataType:"json",
                         success: function(data) {
                             data.forEach(function (city) {
-                                const citySelect = document.getElementById("city");
-                                const option = document.createElement("option");
-                                option.value = city.id;
-                                option.text = city.name;
-                                citySelect.appendChild(option);
+                                setCities(city.id, city.name);
                             });
                         }
                     });
                 } else {
-                    city.innerHTML = "Elige una ciudad";
-                    const citySelect = document.getElementById("city");
-                    const option = document.createElement("option");
-                    option.value = 0;
-                    option.text = "Selecciona una ciudad";
-                    citySelect.appendChild(option);
+                    city.innerHTML = "";
+                    setCities(0, "Selecciona una ciudad");
                 }
             });
         });

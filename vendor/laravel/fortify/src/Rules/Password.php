@@ -83,54 +83,54 @@ class Password implements Rule
             case $this->requireUppercase
             && ! $this->requireNumeric
             && ! $this->requireSpecialCharacter:
-                return __('The :attribute must be at least :length characters and contain at least one uppercase character.', [
+                return __('El campo :attribute must be at least :length characters and contain at least one uppercase character.', [
                     'length' => $this->length,
                 ]);
 
             case $this->requireNumeric
             && ! $this->requireUppercase
             && ! $this->requireSpecialCharacter:
-                return __('The :attribute must be at least :length characters and contain at least one number.', [
+                return __('El campo :attribute debe tener al menos :length caracteres y contener al menos un número.', [
                     'length' => $this->length,
                 ]);
 
             case $this->requireSpecialCharacter
             && ! $this->requireUppercase
             && ! $this->requireNumeric:
-                return __('The :attribute must be at least :length characters and contain at least one special character.', [
+                return __('El campo :attribute debe tener al menos :length caracteres y contener al menos un carácter especial.', [
                     'length' => $this->length,
                 ]);
 
             case $this->requireUppercase
             && $this->requireNumeric
             && ! $this->requireSpecialCharacter:
-                return __('The :attribute must be at least :length characters and contain at least one uppercase character and one number.', [
+                return __('El campo :attribute debe tener al menos :length caracteres y contener al menos un carácter en mayúscula y un número.', [
                     'length' => $this->length,
                 ]);
 
             case $this->requireUppercase
             && $this->requireSpecialCharacter
             && ! $this->requireNumeric:
-                return __('The :attribute must be at least :length characters and contain at least one uppercase character and one special character.', [
+                return __('El campo :attribute debe tener al menos :length caracteres y contener al menos un carácter en mayúscula y un carácter especial.', [
                     'length' => $this->length,
                 ]);
 
             case $this->requireUppercase
             && $this->requireNumeric
             && $this->requireSpecialCharacter:
-                return __('The :attribute must be at least :length characters and contain at least one uppercase character, one number, and one special character.', [
+                return __('El campo :attribute debe tener al menos :length caracteres y contener al menos un carácter en mayúscula, un número y un carácter especial.', [
                     'length' => $this->length,
                 ]);
 
             case $this->requireNumeric
             && $this->requireSpecialCharacter
             && ! $this->requireUppercase:
-                return __('The :attribute must be at least :length characters and contain at least one special character and one number.', [
+                return __('El campo :attribute debe tener al menos :length caracteres y contener al menos un carácter especial y un número.', [
                     'length' => $this->length,
                 ]);
 
             default:
-                return __('The :attribute must be at least :length characters.', [
+                return __('El campo :attribute debe tener al menos :length caracteres.', [
                     'length' => $this->length,
                 ]);
         }

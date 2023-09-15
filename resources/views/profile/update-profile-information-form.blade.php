@@ -69,7 +69,7 @@
         <!-- Address -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="address" value="{{ __('Dirección') }}" />
-            <x-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.address" autocomplete="address" />
+            <x-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.address" />
             <x-input-error for="address" class="mt-2" />
         </div>
 
@@ -100,7 +100,7 @@
         <!-- Phone -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="phone" value="{{ __('Télefono') }}" />
-            <x-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="state.phone" autocomplete="phone" />
+            <x-input id="phone" type="number" class="mt-1 block w-full" wire:model.defer="state.phone" />
             <x-input-error for="phone" class="mt-2" />
         </div>
 
@@ -130,11 +130,11 @@
 
     <x-slot name="actions">
         <x-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Guardado.') }}
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Guardar') }}
         </x-button>
     </x-slot>
 </x-form-section>

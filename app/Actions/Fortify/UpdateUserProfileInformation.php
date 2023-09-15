@@ -17,13 +17,19 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
+        if($input['address'] == null) {
+            $input['address'] = "";
+        }
+        if ($input['phone'] == null) {
+            $input['phone'] = "";
+        }
         Validator::make($input, [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:50'],
-            'city' => ['required'],
-            'phone' => ['required', 'string', 'max:15'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'first_name' => ['required', 'string', 'max:40'],
+            'last_name' => ['required', 'string', 'max:40'],
+            'address' => ['string', 'max:95'],
+            'city' => ['required', 'numeric', 'min:1'],
+            'phone' => ['string', 'max:10'],
+            'email' => ['required', 'email', 'max:95', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
 
