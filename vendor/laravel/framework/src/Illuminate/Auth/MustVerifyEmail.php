@@ -25,6 +25,7 @@ trait MustVerifyEmail
     {
         return $this->forceFill([
             'email_verified_at' => $this->freshTimestamp(),
+            'state' => 1,
         ])->save();
     }
 

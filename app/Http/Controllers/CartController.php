@@ -134,7 +134,9 @@ class CartController extends Controller
             'cedula.regex' => 'La :attribute debe ser una cédula válida de 10 dígitos.',
             'numeric' => 'El campo :attribute debe ser numérico.',
             'string' => 'El campo :attribute debe ser una cadena de caracteres.',
-            'max' => 'El campo :attribute no debe exceder :max caracteres.',
+            'first_name.regex' => 'El campo :attribute solo acepta cadenas de caracteres',
+            'last_name.regex' => 'El campo :attribute solo acepta cadenas de caracteres',
+            'address2.regex' => 'El campo :attribute solo acepta cadenas de caracteres y numeros',
         ];
 
         $attributes = [
@@ -149,14 +151,14 @@ class CartController extends Controller
         ];
 
         $request->validate([
-            'first_name' => 'required|string|max:45',
-            'last_name' => 'required|string|max:45',
-            'cedula' => 'required|regex:/^\d{10}$/',
+            'first_name' => 'required|string|max:45|regex:/^[^0-9]*$/',
+            'last_name' => 'required|string|max:45|regex:/^[^0-9]*$/',
+            'cedula' => 'required|numeric|regex:/^\d{10}$/',
             'address' => 'required|string|max:100',
-            'address2' => 'nullable|string|max:100',
+            'address2' => 'nullable|string|max:100|regex:/^[A-Za-z0-9\s]+$/',
             'city' => 'required',
             'departament' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|numeric',
         ], $messages, $attributes);
 
 

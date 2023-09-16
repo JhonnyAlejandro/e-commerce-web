@@ -24,11 +24,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $input['phone'] = "";
         }
         Validator::make($input, [
-            'first_name' => ['required', 'string', 'max:40'],
-            'last_name' => ['required', 'string', 'max:40'],
+            'first_name' => ['required', 'string', 'max:40', 'regex:/^[^0-9]+$/'],
+            'last_name' => ['required', 'string', 'max:40', 'regex:/^[^0-9]+$/'],
             'address' => ['string', 'max:95'],
             'city' => ['required', 'numeric', 'min:1'],
-            'phone' => ['string', 'max:10'],
+            'phone' => ['string', 'max:11', 'min:10'],
             'email' => ['required', 'email', 'max:95', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');

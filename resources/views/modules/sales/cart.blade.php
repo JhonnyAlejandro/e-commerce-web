@@ -59,8 +59,10 @@
                                                         <span
                                                             class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
                                                             @click="quantity < maxQuantity ? (quantity++, subtotal += price, subtotalInUSD = subtotal / exchangeRate) : ''"
-                                                            :class="{ 'opacity-50 cursor-not-allowed': quantity ===
-                                                                maxQuantity }"
+                                                            :class="{
+                                                                'opacity-50 cursor-not-allowed': quantity ===
+                                                                    maxQuantity
+                                                            }"
                                                             :disabled="quantity === maxQuantity">+</span>
                                                         <input type="hidden" name="product[{{ $product->id }}][quantity]"
                                                             x-bind:value="quantity" />
@@ -79,65 +81,88 @@
                                                         <span
                                                             class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
                                                             @click="quantity < maxQuantity ? (quantity++, subtotal += price , subtotalInUSD =  subtotal / exchangeRate) : ''"
-                                                            :class="{ 'opacity-50 cursor-not-allowed': quantity ===
-                                                                maxQuantity }"
+                                                            :class="{
+                                                                'opacity-50 cursor-not-allowed': quantity ===
+                                                                    maxQuantity
+                                                            }"
                                                             :disabled="quantity === maxQuantity">+</span>
                                                         <input type="hidden" name="product[{{ $product->id }}][quantity]"
                                                             x-bind:value="quantity" />
 
                                                     </div>
+
+                                                    
                                                 @endif
-                                            @else
-                                                <div>
-                                                    <!--Selector de fechas -->
-                                                    <div class="flex items-center border-gray-100 mb-5">
-                                                        <label class="mr-2 text-xs font-bold text-gray-600">Seleccione fecha
-                                                            y horarios <br> del servicio (7AM-10PM) <br>
-                                                            (Al menos 8 dias de antelacion)
-                                                        </label>
-                                                    </div>
-                                                    <div class="flex items-center border-gray-100 mb-2">
-                                                        <label class="mr-2 text-xs text-gray-600">Fecha inicio:</label>
-                                                    </div>
-                                                    <div class="border border-gray-300 rounded-lg">
-                                                        <input type="datetime-local"
-                                                            class="h-8 w-auto bg-white text-center text-xs outline-none border rounded-lg"
-                                                            name="product[{{ $product->id }}][start_date]"
-                                                            id="start-date" />
-                                                    </div>
-                                                    @error("product.{$product->id}.start_date")
-                                                        <p class="text-red-500 text-xs">{{ $message }}</p>
-                                                    @enderror
+                                                <div class="flex justify-end mt-4">
+                                                    @if ($product->discount > 0)
+                                                        <p class="text-lg font-medium text-gray-500 line-through">
+                                                            ${{ number_format($product->sale_price, 0, '.', '.') }}</p>
+                                                        <p class="ml-2 text-lg font-medium text-gray-900">
+                                                            ${{ number_format($product->sale_price - $product->sale_price * ($product->discount / 100), 0, '.', '.') }}
+                                                        </p>
+                                                    @else
+                                                        <p class="text-lg font-bold text-gray-900">
+                                                            ${{ number_format($product->sale_price, 0, '.', '.') }}</p>
+                                                    @endif
                                                 </div>
-                                                <div>
-                                                    <div class="flex items-center border-gray-100 mb-2">
-                                                        <label class="mr-2 text-xs text-gray-600">Fecha fin:</label>
+                                            @else
+                                                <div class="">
+                                                    <div class="flex items-center border-gray-100 mb-5">
+                                                        <label class="mr-2 text-xs font-bold text-gray-600">Seleccione
+                                                            fecha y horarios <br> del servicio (7AM-10PM) <br> (Al menos
+                                                            8 días de antelación)</label>
                                                     </div>
-                                                    <div class="border border-gray-300 rounded-lg">
-                                                        <input type="datetime-local"
-                                                            class="h-8 w-auto bg-white text-center text-xs outline-none border rounded-lg"
-                                                            name="product[{{ $product->id }}][end_date]" id="end-date" />
+                                                    <div class="sm:w-1/3">
+                                                        <!-- Selector de fechas -->
+                                                        <div class="flex items-center border-gray-100 mb-2">
+                                                            <label class=" text-xs text-gray-600">Fecha inicio:</label>
+                                                        </div>
+                                                        <div class="border border-gray-300 rounded-lg">
+                                                            <input type="datetime-local"
+                                                                class="h-8 w-auto bg-white text-center text-xs outline-none border rounded-lg"
+                                                                name="product[{{ $product->id }}][start_date]"
+                                                                id="start-date" />
+                                                        </div>
+                                                        @error("product.{$product->id}.start_date")
+                                                            <p class="text-red-500 text-xs">{{ $message }}</p>
+                                                        @enderror
                                                     </div>
-                                                    @error("product.{$product->id}.end_date")
-                                                        <p class="text-red-500 text-xs">{{ $message }}</p>
-                                                    @enderror
+                                                    <div class="sm:w-1/3 mt-2">
+                                                        <div class="flex items-center border-gray-100 mb-2">
+                                                            <label class="mr-2 text-xs text-gray-600">Fecha fin:</label>
+                                                        </div>
+                                                        <div class="border border-gray-300 rounded-lg">
+                                                            <input type="datetime-local"
+                                                                class="h-8 w-auto bg-white text-center text-xs outline-none border rounded-lg"
+                                                                name="product[{{ $product->id }}][end_date]"
+                                                                id="end-date" />
+                                                        </div>
+                                                        @error("product.{$product->id}.end_date")
+                                                            <p class="text-red-500 text-xs">{{ $message }}</p>
+                                                        @enderror
+                                                        
+                                                    </div>
+
+                                                    <div class="flex justify-end mt-4">
+                                                        @if ($product->discount > 0)
+                                                            <p class="text-lg font-medium text-gray-500 line-through">
+                                                                ${{ number_format($product->sale_price, 0, '.', '.') }}</p>
+                                                            <p class="ml-2 text-lg font-medium text-gray-900">
+                                                                ${{ number_format($product->sale_price - $product->sale_price * ($product->discount / 100), 0, '.', '.') }}
+                                                            </p>
+                                                        @else
+                                                            <p class="text-lg font-bold text-gray-900">
+                                                                ${{ number_format($product->sale_price, 0, '.', '.') }}</p>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                                 <!--Fin  selector de fechas-->
                                                 <input type="hidden" name="product[{{ $product->id }}][quantity]"
                                                     value="1" />
                                             @endif
-                                            <div class="flex justify-end">
-                                                @if ($product->discount > 0)
-                                                    <p class="text-lg font-medium text-gray-500 line-through">
-                                                        ${{ number_format($product->sale_price, 0, '.', '.') }}</p>
-                                                    <p class="ml-2 text-lg font-medium text-gray-900">
-                                                        ${{ number_format($product->sale_price - $product->sale_price * ($product->discount / 100), 0, '.', '.') }}
-                                                    </p>
-                                                @else
-                                                    <p class="text-lg font-bold text-gray-900">
-                                                        ${{ number_format($product->sale_price, 0, '.', '.') }}</p>
-                                                @endif
-                                            </div>
+
+                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +173,7 @@
 
                 <!-- Contenedor padre para Subtotal y Comentario -->
                 @unless ($products->isEmpty())
-                    <div class="md:flex md:flex-col md:space-y-6 md:w-1/3 md:ml-6 md:mt-0">
+                    <div class="md:flex md:flex-col md:space-y-6 md:w-1/3 md:ml-6 md:mt-0 md:h-1/2">
                         <!-- Inicio cuadro Subtotal -->
                         <div class="h-full rounded-lg  border bg-white p-6 shadow-md">
                             <div class="mb-2 flex justify-between">
@@ -204,7 +229,7 @@
                         </div>
                         <!-- Final cuadro Subtotal -->
                     </div>
-                </div>
+            </div>
 
                 <!--Inicio Formulario datos de envio -->
                 <div class="mx-auto max-w-9xl justify-center px-6">
@@ -215,45 +240,67 @@
                                     <h1 class="font-semibold text-xl text-center">Datos de envío</h1>
                                     <div class="flex flex-col sm:flex-row sm:space-x-5">
                                         <div class="field flex-grow mb-4 sm:mb-0">
-                                            <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_first_name">Nombre*</label>
-                                            <input placeholder="Nombre" class="field__input w-full p-2 border border-gray-300 rounded @error('first_name') border-red-500 @enderror" type="text" name="first_name" id="first_name" value="{{ old('first_name') }}">
+                                            <label class="field__label block font-semibold mb-1"
+                                                for="checkout_shipping_address_first_name">Nombre*</label>
+                                            <input placeholder="Nombre"
+                                                class="field__input w-full p-2 border border-gray-300 rounded @error('first_name') border-red-500 @enderror"
+                                                type="text" name="first_name" id="first_name"
+                                                value="{{ old('first_name') }}">
                                             @error('first_name')
                                                 <p class="text-red-500 text-xs">{{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div class="field flex-grow">
-                                            <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_last_name">Apellido*</label>
-                                            <input placeholder="Apellido" class="field__input w-full p-2 border border-gray-300 rounded @error('last_name') border-red-500 @enderror" type="text" name="last_name" id="last_name" value="{{ old('last_name') }}">
+                                            <label class="field__label block font-semibold mb-1"
+                                                for="checkout_shipping_address_last_name">Apellido*</label>
+                                            <input placeholder="Apellido"
+                                                class="field__input w-full p-2 border border-gray-300 rounded @error('last_name') border-red-500 @enderror"
+                                                type="text" name="last_name" id="last_name"
+                                                value="{{ old('last_name') }}">
                                             @error('last_name')
                                                 <p class="text-red-500 text-xs">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="field mb-4">
-                                        <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_company">Cédula*</label>
-                                        <input placeholder="Cédula" class="field__input w-full p-2 border border-gray-300 rounded @error('cedula') border-red-500 @enderror" type="text" pattern="[0-9]{10}" title="Ingresa una cédula válida de 10 dígitos" name="cedula" id="cedula" value="{{ old('cedula') }}">
+                                        <label class="field__label block font-semibold mb-1"
+                                            for="checkout_shipping_address_company">Cédula*</label>
+                                        <input placeholder="Cédula"
+                                            class="field__input w-full p-2 border border-gray-300 rounded @error('cedula') border-red-500 @enderror"
+                                            type="text" pattern="[0-9]{10}"
+                                            title="Ingresa una cédula válida de 10 dígitos" name="cedula" id="cedula"
+                                            value="{{ old('cedula') }}">
                                         @error('cedula')
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="field mb-4">
-                                        <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_address1">Dirección*</label>
-                                        <input placeholder="Dirección" class="field__input w-full p-2 border border-gray-300 rounded @error('address') border-red-500 @enderror" type="text" name="address" id="address" value="{{ old('address') }}">
+                                        <label class="field__label block font-semibold mb-1"
+                                            for="checkout_shipping_address_address1">Dirección*</label>
+                                        <input placeholder="Dirección"
+                                            class="field__input w-full p-2 border border-gray-300 rounded @error('address') border-red-500 @enderror"
+                                            type="text" name="address" id="address" value="{{ old('address') }}">
                                         @error('address')
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="field mb-4">
-                                        <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_address2">Apartamento, local, etc.</label>
-                                        <input placeholder="Apartamento, local, etc." class="field__input w-full p-2 border border-gray-300 rounded @error('address2') border-red-500 @enderror" type="text" name="address2" id="address2" value="{{ old('address2') }}">
+                                        <label class="field__label block font-semibold mb-1"
+                                            for="checkout_shipping_address_address2">Apartamento, local, etc.</label>
+                                        <input placeholder="Apartamento, local, etc."
+                                            class="field__input w-full p-2 border border-gray-300 rounded @error('address2') border-red-500 @enderror"
+                                            type="text" name="address2" id="address2" value="{{ old('address2') }}">
                                         @error('address2')
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="flex flex-col sm:flex-row sm:space-x-4">
                                         <div class="field flex-grow mb-4 sm:mb-0">
-                                            <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_province">Departamento*</label>
-                                            <select class="field__input w-full p-2 border border-gray-300 rounded @error('departament') border-red-500 @enderror" name="departament" id="departament">
+                                            <label class="field__label block font-semibold mb-1"
+                                                for="checkout_shipping_address_province">Departamento*</label>
+                                            <select
+                                                class="field__input w-full p-2 border border-gray-300 rounded @error('departament') border-red-500 @enderror"
+                                                name="departament" id="departament">
                                                 <option value="" disabled selected>Departamento</option>
                                                 @foreach ($departaments as $departament)
                                                     <option value="{{ $departament->id }}">{{ $departament->name }}</option>
@@ -264,8 +311,11 @@
                                             @enderror
                                         </div>
                                         <div class="field flex-grow">
-                                            <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_province">Ciudad*</label>
-                                            <select class="field__input w-full p-2 border border-gray-300 rounded @error('city') border-red-500 @enderror" name="city" id="city">
+                                            <label class="field__label block font-semibold mb-1"
+                                                for="checkout_shipping_address_province">Ciudad*</label>
+                                            <select
+                                                class="field__input w-full p-2 border border-gray-300 rounded @error('city') border-red-500 @enderror"
+                                                name="city" id="city">
                                                 <option value="" disabled selected>Ciudad</option>
                                                 <!-- Las opciones de ciudad se cargarán dinámicamente usando JavaScript -->
                                             </select>
@@ -275,8 +325,12 @@
                                         </div>
                                     </div>
                                     <div class="field">
-                                        <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_phone">Número de Celular (Con WhatsApp)*</label>
-                                        <input placeholder="Número de Celular (Con WhatsApp)" class="field__input w-full p-2 border border-gray-300 rounded @error('phone') border-red-500 @enderror" type="tel" name="phone" id="phone" value="{{ old('phone') }}" pattern="[0-9]{10}">
+                                        <label class="field__label block font-semibold mb-1"
+                                            for="checkout_shipping_address_phone">Número de Celular (Con WhatsApp)*</label>
+                                        <input placeholder="Número de Celular (Con WhatsApp)"
+                                            class="field__input w-full p-2 border border-gray-300 rounded @error('phone') border-red-500 @enderror"
+                                            type="tel" name="phone" id="phone" value="{{ old('phone') }}"
+                                            pattern="[0-9]{10}">
                                         @error('phone')
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
@@ -285,7 +339,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    
+                </div>
             @endunless
     </div>
     </form>
@@ -318,13 +373,13 @@
 
     <script>
         const getCityUrl =
-        "{{ route('get.cities', ['departamentId' => ':departamentId']) }}"; // :departamentId será reemplazado con el valor real
+            "{{ route('get.cities', ['departamentId' => ':departamentId']) }}"; // :departamentId será reemplazado con el valor real
 
         document.getElementById('departament').addEventListener('change', function() {
             var selectedDepartamentId = this.value;
             var citySelect = document.getElementById('city');
             citySelect.innerHTML =
-            '<option value="" disabled selected>Ciudad</option>'; // Limpiar las opciones actuales
+                '<option value="" disabled selected>Ciudad</option>'; // Limpiar las opciones actuales
 
             // Si se selecciona un departamento, hacer una llamada al servidor para obtener las ciudades
             if (selectedDepartamentId) {
@@ -505,7 +560,7 @@
 
                 // Sumamos las horas adecuadas a la fecha de inicio
                 const endDate = startDate.clone().add(hoursToAdd, 'hours').minutes(startDate
-            .minutes()); // Los minutos son iguales a los de startDate
+                    .minutes()); // Los minutos son iguales a los de startDate
                 endDateInput.value = endDate.format('YYYY-MM-DDTHH:mm');
             }
         };

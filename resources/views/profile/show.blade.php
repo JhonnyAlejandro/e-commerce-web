@@ -38,19 +38,23 @@
             @endif
 
 
-            <form method="POST" action="{{ route('logout') }}" x-data>
-                @csrf
+            <div class="mt-10 sm:mt-0">
+                <form method="POST" action="{{ route('logout') }}" x-data>
+                    @csrf
 
-                <x-danger-button class="ml-3" wire:click="deleteUser" wire:loading.attr="disabled">
-                    {{ __('Cerrar sesión') }}
-                </x-danger-button>
-            </form>
+                    <x-danger-button class="" wire:click="deleteUser" wire:loading.attr="disabled">
+                        {{ __('Cerrar sesión') }}
+                    </x-danger-button>
+
+                </form>
+            </div>
+            <x-section-border />
         </div>
     </div>
 @endsection
 @section('scripts')
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             var phoneInput = document.getElementById("phone");
             phoneInput.type = "number";
         });
