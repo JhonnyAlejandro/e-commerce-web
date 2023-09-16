@@ -23,7 +23,7 @@
         <!-- Panel deslizable -->
         <div x-show="isOpen" x-transition:enter="transition ease-in-out duration-500" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-500"
-            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 overflow-hidden" style="display: none;">
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 overflow-hidden" style="display: none">
             <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
             <div class="absolute inset-0 overflow-hidden">
                 <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
