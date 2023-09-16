@@ -27,7 +27,6 @@
                                     <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                                         <div class="mt-5 sm:mt-0">
                                             <h2 class="text-lg font-bold text-gray-900">{{ $product->name }}</h2>
-                                            <p class="mt-1 text-xs text-gray-700">{{ $product->description }}</p>
                                         </div>
                                         <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                                             <div class="absolute top-1 right-0 mt-2 mr-2">
@@ -208,110 +207,85 @@
                 </div>
 
                 <!--Inicio Formulario datos de envio -->
-                <div class="flex justify-center">
-                    <div class="mt-12 h-full rounded-lg border bg-white p-1 shadow-md  md:w-4/5 xl:w-5/4">
-                        <div class="relative mb-0 rounded-lg bg-white p-2">
-                            <div class="address-fields space-y-5 bg-white p-6 rounded-md">
-                                <h1 class="font-semibold text-xl text-center">Datos de envío</h1>
-                                <div class="flex flex-row space-x-5">
-                                    <div class="field flex-grow">
-                                        <label class="field__label block font-semibold mb-1"
-                                            for="checkout_shipping_address_first_name">Nombre*</label>
-                                        <input placeholder="Nombre"
-                                            class="field__input w-full p-2 border border-gray-300 rounded @error('first_name') border-red-500 @enderror"
-                                            type="text" name="first_name" id="first_name"
-                                            value="{{ old('first_name') }}">
-                                        @error('first_name')
+                <div class="mx-auto max-w-9xl justify-center px-6">
+                    <div class="flex justify-center">
+                        <div class="mt-12 h-full rounded-lg border bg-white p-1 shadow-md  md:w-4/5 xl:w-5/4 ">
+                            <div class="relative mb-0 rounded-lg bg-white p-2">
+                                <div class="address-fields space-y-5 bg-white p-6 rounded-md">
+                                    <h1 class="font-semibold text-xl text-center">Datos de envío</h1>
+                                    <div class="flex flex-col sm:flex-row sm:space-x-5">
+                                        <div class="field flex-grow mb-4 sm:mb-0">
+                                            <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_first_name">Nombre*</label>
+                                            <input placeholder="Nombre" class="field__input w-full p-2 border border-gray-300 rounded @error('first_name') border-red-500 @enderror" type="text" name="first_name" id="first_name" value="{{ old('first_name') }}">
+                                            @error('first_name')
+                                                <p class="text-red-500 text-xs">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="field flex-grow">
+                                            <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_last_name">Apellido*</label>
+                                            <input placeholder="Apellido" class="field__input w-full p-2 border border-gray-300 rounded @error('last_name') border-red-500 @enderror" type="text" name="last_name" id="last_name" value="{{ old('last_name') }}">
+                                            @error('last_name')
+                                                <p class="text-red-500 text-xs">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="field mb-4">
+                                        <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_company">Cédula*</label>
+                                        <input placeholder="Cédula" class="field__input w-full p-2 border border-gray-300 rounded @error('cedula') border-red-500 @enderror" type="text" pattern="[0-9]{10}" title="Ingresa una cédula válida de 10 dígitos" name="cedula" id="cedula" value="{{ old('cedula') }}">
+                                        @error('cedula')
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                    <div class="field flex-grow">
-                                        <label class="field__label block font-semibold mb-1"
-                                            for="checkout_shipping_address_last_name">Apellido*</label>
-                                        <input placeholder="Apellido"
-                                            class="field__input w-full p-2 border border-gray-300 rounded  @error('last_name') border-red-500 @enderror"
-                                            type="text" name="last_name" id="last_name" value="{{ old('last_name') }}">
-                                        @error('last_name')
+                                    <div class="field mb-4">
+                                        <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_address1">Dirección*</label>
+                                        <input placeholder="Dirección" class="field__input w-full p-2 border border-gray-300 rounded @error('address') border-red-500 @enderror" type="text" name="address" id="address" value="{{ old('address') }}">
+                                        @error('address')
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                </div>
-                                <div class="field">
-                                    <label class="field__label block font-semibold mb-1"
-                                        for="checkout_shipping_address_company">Cédula*</label>
-                                    <input placeholder="Cédula"
-                                        class="field__input w-full p-2 border border-gray-300 rounded @error('cedula') border-red-500 @enderror"
-                                        type="text" pattern="[0-9]{10}" title="Ingresa una cédula válida de 10 dígitos"
-                                        name="cedula" id="cedula" value="{{ old('cedula') }}">
-                                    @error('cedula')
-                                        <p class="text-red-500 text-xs">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div celd">
-                                    <label class="field__label block font-semibold mb-1"
-                                        for="checkout_shipping_address_address1">Dirección*</label>
-                                    <input placeholder="Dirección"
-                                        class="field__input w-full p-2 border border-gray-300 rounded @error('address') border-red-500 @enderror"
-                                        type="text" name="address" id="address" value="{{ old('address') }}">
-                                    @error('address')
-                                        <p class="text-red-500 text-xs">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="field">
-                                    <label class="field__label block font-semibold mb-1"
-                                        for="checkout_shipping_address_address2">Apartamento, local, etc.</label>
-                                    <input placeholder="Apartamento, local, etc."
-                                        class="field__input w-full p-2 border border-gray-300 rounded @error('address2') border-red-500 @enderror"
-                                        type="text" name="address2" id="address2" value="{{ old('address2') }}">
-                                    @error('address2')
-                                        <p class="text-red-500 text-xs">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="flex flex-row space-x-4">
-                                    <div class="field">
-                                        <label class="field__label block font-semibold mb-1"
-                                            for="checkout_shipping_address_province">Departamento*</label>
-                                        <select
-                                            class="field__input w-full p-2 border border-gray-300 rounded @error('departament') border-red-500 @enderror"
-                                            name="departament" id="departament">
-                                            <option value="" disabled selected>Departamento</option>
-                                            @foreach ($departaments as $departament)
-                                                <option value="{{ $departament->id }}">{{ $departament->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('departament')
+                                    <div class="field mb-4">
+                                        <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_address2">Apartamento, local, etc.</label>
+                                        <input placeholder="Apartamento, local, etc." class="field__input w-full p-2 border border-gray-300 rounded @error('address2') border-red-500 @enderror" type="text" name="address2" id="address2" value="{{ old('address2') }}">
+                                        @error('address2')
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row sm:space-x-4">
+                                        <div class="field flex-grow mb-4 sm:mb-0">
+                                            <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_province">Departamento*</label>
+                                            <select class="field__input w-full p-2 border border-gray-300 rounded @error('departament') border-red-500 @enderror" name="departament" id="departament">
+                                                <option value="" disabled selected>Departamento</option>
+                                                @foreach ($departaments as $departament)
+                                                    <option value="{{ $departament->id }}">{{ $departament->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('departament')
+                                                <p class="text-red-500 text-xs">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="field flex-grow">
+                                            <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_province">Ciudad*</label>
+                                            <select class="field__input w-full p-2 border border-gray-300 rounded @error('city') border-red-500 @enderror" name="city" id="city">
+                                                <option value="" disabled selected>Ciudad</option>
+                                                <!-- Las opciones de ciudad se cargarán dinámicamente usando JavaScript -->
+                                            </select>
+                                            @error('city')
+                                                <p class="text-red-500 text-xs">{{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="field">
-                                        <label class="field__label block font-semibold mb-1"
-                                            for="checkout_shipping_address_province">Ciudad*</label>
-                                        <select
-                                            class="field__input w-60 p-2 border border-gray-300 rounded @error('city') border-red-500 @enderror"
-                                            name="city" id="city">
-                                            <option value="" disabled selected>Ciudad</option>
-                                            <!-- Las opciones de ciudad se cargarán dinámicamente usando JavaScript -->
-                                        </select>
-                                        @error('city')
+                                        <label class="field__label block font-semibold mb-1" for="checkout_shipping_address_phone">Número de Celular (Con WhatsApp)*</label>
+                                        <input placeholder="Número de Celular (Con WhatsApp)" class="field__input w-full p-2 border border-gray-300 rounded @error('phone') border-red-500 @enderror" type="tel" name="phone" id="phone" value="{{ old('phone') }}" pattern="[0-9]{10}">
+                                        @error('phone')
                                             <p class="text-red-500 text-xs">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                </div>
-                                <div class="field">
-                                    <label class="field__label block font-semibold mb-1"
-                                        for="checkout_shipping_address_phone">Número de Celular (Con WhatsApp)*</label>
-                                    <input placeholder="Número de Celular (Con WhatsApp)"
-                                        class="field__input w-full p-2 border border-gray-300 rounded @error('phone') border-red-500 @enderror"
-                                        type="tel" name="phone" id="phone" value="{{ old('phone') }}" 
-                                        pattern="[0-9]{10}">
-                                    @error('phone')
-                                        <p class="text-red-500 text-xs">{{ $message }}</p>
-                                    @enderror
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>
             @endunless
     </div>
     </form>

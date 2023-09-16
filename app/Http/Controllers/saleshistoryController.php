@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 
 
-class saleshistoryController extends Controller
+class SalesHistoryController extends Controller
 {
     /**
      * Display a listing of the resource.

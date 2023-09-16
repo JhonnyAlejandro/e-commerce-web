@@ -44,10 +44,10 @@ Route::get('/getCitiesAndDepartment/{departmentId}',[App\Http\Controllers\Cities
 Route::get('/getCitiesAndDepartment/',[App\Http\Controllers\CitiesDepartmentsController::class, 'getDepartments'])->name('departments');
 
 //Rutas de sales
-Route::resource('/Historial', App\Http\Controllers\saleshistoryController::class)->names('history');
+Route::resource('/Historial', App\Http\Controllers\SalesHistoryController::class)->names('history');
 Route::get('/factura', [App\Http\Controllers\InvoiceController::class, 'checkout'])->name('factura');
-Route::get('/sales/history', [saleshistoryController::class, 'index'])->name('sales.history');
-Route::post('/actualizar-estado', [saleshistoryController::class, 'updateStatus'])->name('sales.change');
+Route::get('/sales/history', [SalesHistoryController::class, 'index'])->name('sales.history');
+Route::post('/actualizar-estado', [SalesHistoryController::class, 'updateStatus'])->name('sales.change');
 Route::get('/carrito', [App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
 Route::delete('/carrito/{product}', [App\Http\Controllers\CartController::class, 'removeProduct'])->name('cart.remove');
 Route::get('/get-cities/{departamentId}', [App\Http\Controllers\CartController::class, 'getCities'])->name('get.cities');

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\File;
 
 
@@ -79,20 +78,8 @@ class InvoiceController extends Controller
             'total_price' => $total_price,
         ];
 
-      
-            $html = view('modules.sales.sale-bill', $data)->render();
-            $image = Browsershot::html($html)->clip(145, -10, 1100, 1400)->windowSize(1400, 0)->screenshot();
-        
-            $tempImagePath = public_path('images.png');
-        
-            File::put($tempImagePath, $image);
-        
-            $htmlWithImage = '<img src="' . asset('images.png'). '" alt="Imagen de la factura" width="700" height="1000">';
-        
-            
-     
 
-        $pdf = Pdf::loadHtml($htmlWithImage);
+        $pdf = Pdf::loadview('modules.sales.sale-bill', $data);
         $pdfPath = storage_path('app/public/') . 'factura.pdf';
         $pdf->save($pdfPath);
 
@@ -113,7 +100,6 @@ class InvoiceController extends Controller
             Session::put('facturas_enviadas', $facturasEnviadas);
         }
 
-        File::delete($tempImagePath);
         File::delete($pdfPath);
         // Cargar la vista de la factura
         return view('modules.sales.sale-bill', compact('sale', 'total_price'));

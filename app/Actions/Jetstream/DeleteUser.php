@@ -14,6 +14,9 @@ class DeleteUser implements DeletesUsers
     {
         $user->deleteProfilePhoto();
         $user->tokens->each->delete();
-        $user->delete();
+        $user->state = 0;
+        $user->email_verified_at = NULL;
+        $user->save();
     }
+    
 }
