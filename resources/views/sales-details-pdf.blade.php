@@ -20,7 +20,7 @@
                             <td style="padding-top: 1rem; padding-bottom: 1rem; color: rgb(107, 114, 128);">{{ \Carbon\Carbon::parse($item->start_date)->isoFormat('MM/DD/YYYY - hh:mm a') }}</td>
                             <td style="padding-top: 1rem; padding-bottom: 1rem; color: rgb(107, 114, 128);">{{ \Carbon\Carbon::parse($item->finish_date)->isoFormat('MM/DD/YYYY - hh:mm a') }}</td>
                             <td style="padding-top: 1rem; padding-bottom: 1rem; color: rgb(107, 114, 128);">{{ $item->quantity }}</td>
-                            <td style="padding-top: 1rem; padding-bottom: 1rem; color: rgb(107, 114, 128);">{{ $item->total_price }}</td>
+                            <td style="padding-top: 1rem; padding-bottom: 1rem; color: rgb(107, 114, 128);">${{ number_format($item->total_price, 0, '.', '.') }}</td>
                             <td style="padding-top: 1rem; padding-bottom: 1rem; color: rgb(107, 114, 128);">{{ \Carbon\Carbon::parse($item->created_at)->isoFormat('MM/DD/YYYY - hh:mm a') }}</td>
                         </tr>
                     @endforeach
