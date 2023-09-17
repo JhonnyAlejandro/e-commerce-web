@@ -10,7 +10,7 @@
                     <th style="padding-top: 0.875rem; padding-bottom: 0.875rem; color: rgb(17, 24, 39);">F. fin</th>
                     <th style="padding-top: 0.875rem; padding-bottom: 0.875rem; color: rgb(17, 24, 39);">Cantidad</th>
                     <th style="padding-top: 0.875rem; padding-bottom: 0.875rem; color: rgb(17, 24, 39);">Precio total</th>
-                    <th style="padding-top: 0.875rem; padding-bottom: 0.875rem; color: rgb(17, 24, 39);">Fecha de creación</th>
+                    <th style="padding-top: 0.875rem; padding-bottom: 0.875rem; color: rgb(17, 24, 39);">F. creación</th>
                 </thead>
                 <tbody style="text-align: center;">
                     @foreach ($salesDetails as $item)

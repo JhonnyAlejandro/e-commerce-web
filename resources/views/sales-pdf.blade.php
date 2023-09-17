@@ -9,7 +9,7 @@
                     <th style="padding-top: 0.875rem; padding-bottom: 0.875rem; color: rgb(17, 24, 39);">M. pago</th>
                     <th style="padding-top: 0.875rem; padding-bottom: 0.875rem; color: rgb(17, 24, 39);">Estado</th>
                     <th style="padding-top: 0.875rem; padding-bottom: 0.875rem; color: rgb(17, 24, 39);">Venta total</th>
-                    <th style="padding-top: 0.875rem; padding-bottom: 0.875rem; color: rgb(17, 24, 39);">Fecha de creación</th>
+                    <th style="padding-top: 0.875rem; padding-bottom: 0.875rem; color: rgb(17, 24, 39);">F. creación</th>
                 </thead>
                 <tbody style="text-align: center;">
                     @foreach ($sales as $item)
