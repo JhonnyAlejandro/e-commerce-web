@@ -1,6 +1,19 @@
 @extends('dashboard')
 
 @section('content')
+
+    @php
+    
+        $venta = "Fecha de compra";
+        
+        $permiso = 'products.index';
+        
+        if (auth()->check() && auth()->user()->can($permiso)) {
+            $venta = "Fecha de venta";
+        }
+
+    @endphp
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
     <div class="bg-white shadow-lg rounded-lg p-4 md:p-6 text-center">
@@ -30,6 +43,12 @@
         </form>
     </div>
 
+    @if ($uniqueSales == null)
+    <div class="text-center" style="margin-top: 200px;">
+        <p class="text-gray-600 text-2xl font-bold">No hay registros de compras</p>
+    </div>
+    @else
+
     @foreach ($uniqueSales as $saleId => $saleData)
         <div class="py-12 px-8 space-y-20 mt-4 bg-white shadow-lg rounded-lg">
             <div>
@@ -49,7 +68,7 @@
                             <dd class="md:mt-1">{{ $saleData['sale']->payment_method_name }}</dd>
                         </div>
                         <div class="flex justify-between pt-6 md:block md:pt-0">
-                            <dt class="font-semibold text-gray-900">Fecha de venta</dt>
+                            <dt class="font-semibold text-gray-900">{{$venta}}</dt>
                             <dd class="md:mt-1">
                                 {{ \Carbon\Carbon::parse($saleData['sale']->created_at)->isoFormat('MMM DD, YYYY') }}</dd>
                         </div>
@@ -72,8 +91,9 @@
                                     <th scope="col" class=" w-4 py-3 pr-8 font-normal md:table-cell"></th>
                                 @endif
                                 <th scope="col" class="w-2/5 lg:w-1/2 py-3 pr-8 font-normal xl:w-1/3">Estado</th>
-                                <th scope="col" class="w-2/5 lg:w-1/2 py-3 pr-8 font-normal xl:w-1/3">Información</th>
-                                <th scope="col" class="w-2/5 lg:w-1/2 py-3 pr-8 font-normal xl:w-1/3">Datos de envío</th>
+                                @can('products.index')
+                                    <th scope="col" class="w-2/5 lg:w-1/2 py-3 pr-8 font-normal xl:w-1/3">Información</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody class="text-lg border-gray-200 border-b-2 md:border-t-2">
@@ -101,22 +121,24 @@
                                     @endif
                                     <td class="w-2/2 lg:w-1/2 py-3 pr-8 font-normal xl:w-1/3">{{ $detail->status_name }}
                                     </td>
-
+                                    @can('products.index')
                                     <td class="w-2/2 lg:w-1/2 py-3 pr-8 font-normal xl:w-1/3">
-                                        @can('products.index')
-                                            @if ($detail->status == 3)
-                                                <button
-                                                    class="p-4 rounded-lg text-white hover:bg-indigo-400 bg-indigo-600 agendar-button"
-                                                    data-sale-id="{{ $detail->sale_id }}">
-                                                    Agendar
-                                                </button>
-                                            @endif
-                                        @endcan
+                                      
+                                          
+                                        
+                                        <button class="p-4 rounded-lg text-white hover:bg-indigo-400 bg-indigo-600 agendar-button
+                                            @if ($detail->status != 3) opacity-50 cursor-not-allowed @endif"
+                                                data-sale-id="{{ $detail->sale_id }}"
+                                            @if ($detail->status != 3) disabled @endif>
+                                            Agendar
+                                        </button>
+                                   
+                                        
                                     </td>
+                                    @endcan
                                     <td x-data="{ modal: false, sale: {} }" class="py-6 pr-8 md:table-cell">
                                         <button x-on:click="modal =! modal"
-                                            class="text-indigo-600 hover:text-indigo-500">Ver <span
-                                                class="hidden xl:inline">datos</span></button>
+                                            class="text-indigo-600 hover:text-indigo-500">Ver datos</button>
                                         <template x-teleport="body">
                                             @include('modules.sales.details-quickview')
                                         </template>
@@ -130,7 +152,7 @@
             </div>
         </div>
     @endforeach
-
+    @endif
     <script>
         var csrfToken = '{{ csrf_token() }}';
 
