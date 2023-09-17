@@ -16,20 +16,16 @@ class FacturaEmail extends Mailable
     public $user;
     public $sale;
     public $total_price;
-    public $pdfPath;
+    public $data;
 
-    public function __construct($pdfPath)
+    public function __construct($sale)
     {
-        $this->pdfPath = $pdfPath;
+        $this->sale = $sale;
     }
 
     public function build()
     {
         return $this->subject('Factura de Compra') // Asunto del correo electrónico
-            ->view('modules.sales.tanks') // Nombre de la vista para el correo electrónico
-            ->attach($this->pdfPath, [
-                'as' => 'factura.pdf', // Nombre del archivo adjunto en el correo
-                'mime' => 'application/pdf', // Tipo MIME del archivo adjunto
-            ]);
+            ->view('modules.sales.mail_invoice'); // Nombre de la vista para el correo electrónico
     }
 }

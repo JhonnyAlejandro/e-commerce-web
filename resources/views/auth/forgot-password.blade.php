@@ -1,8 +1,8 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+            <img src="{{asset('images/logo.png')}}" width="200px">
+        </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
             {{ __('¿Olvidaste tu contraseña? Ningún problema. Simplemente háganos saber su dirección de correo electrónico y le enviaremos un enlace de restablecimiento de contraseña que le permitirá elegir una nueva.') }}

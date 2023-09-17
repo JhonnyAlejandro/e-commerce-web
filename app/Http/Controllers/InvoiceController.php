@@ -79,9 +79,9 @@ class InvoiceController extends Controller
         ];
 
 
-        $pdf = Pdf::loadview('modules.sales.sale-bill', $data);
-        $pdfPath = storage_path('app/public/') . 'factura.pdf';
-        $pdf->save($pdfPath);
+        //$pdf = Pdf::loadview('modules.sales.sale-bill', $data);
+        //$pdfPath = storage_path('app/public/') . 'factura.pdf';
+        //$pdf->save($pdfPath);
 
 
         // Verificar si la factura ya ha sido enviada
@@ -91,7 +91,7 @@ class InvoiceController extends Controller
         // Verifica si la factura actual ya se envió anteriormente
         if (!in_array($sale[0]->id, $facturasEnviadas)) {
             // Envía la factura por correo
-            Mail::to($sale[0]->email)->send(new FacturaEmail($pdfPath));
+            Mail::to($sale[0]->email)->send(new FacturaEmail($sale));
 
             // Agrega el ID de la factura a la lista de facturas enviadas
             $facturasEnviadas[] = $sale[0]->id;
@@ -100,7 +100,7 @@ class InvoiceController extends Controller
             Session::put('facturas_enviadas', $facturasEnviadas);
         }
 
-        File::delete($pdfPath);
+        //File::delete($pdfPath);
         // Cargar la vista de la factura
         return view('modules.sales.sale-bill', compact('sale', 'total_price'));
     }

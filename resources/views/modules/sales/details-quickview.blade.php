@@ -27,12 +27,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="px-4 py-2">{{$sale->first_name}} {{$sale->last_name}}</td>
-                                <td class="px-4 py-2">{{$sale->identification_card}}</td>
-                                <td class="px-4 py-2">{{$sale->phone}}</td>
-                                <td class="px-4 py-2">{{$sale->department_name}}</td>
-                                <td class="px-4 py-2">{{$sale->city_name}}</td>
-                                <td class="px-4 py-2">{{$sale->address}}</td>
+                                <td class="px-4 py-2">{{$saleData['sale']->shipping_first_name}} {{$saleData['sale']->shipping_last_name}}</td>
+                                <td class="px-4 py-2">{{$saleData['sale']->shipping_identification_card}}</td>
+                                <td class="px-4 py-2">{{$saleData['sale']->shipping_phone}}</td>
+                                <td class="px-4 py-2">{{$saleData['sale']->department_name}}</td>
+                                <td class="px-4 py-2">{{$saleData['sale']->city_name}}</td>
+                                <td class="px-4 py-2">{{$saleData['sale']->shipping_address}}</td>
                             </tr>
                         </tbody>
                     </table>

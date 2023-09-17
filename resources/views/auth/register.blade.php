@@ -1,10 +1,8 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-        <div class="flex justify-center items-center ">
-             <img src="{{ asset('images/logo.png') }}" width="200">
-        </div>
-        </x-slot>
+            <img src="{{asset('images/logo.png')}}" width="200px">
+        </x-slot>
 
         <x-validation-errors class="mb-4" />
 
