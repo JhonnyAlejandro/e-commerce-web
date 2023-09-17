@@ -5,7 +5,7 @@
         <div class="max-w-5xl mx-auto">
             <h1 class="text-4xl font-semibold text-gray-900">Política de privacidad</h1>
             <p class="mt-6">
-                Fecha de entrada en vigor: xx/xx/xxxx.
+                Fecha de entrada en vigor: 17/09/2023.
                 <br>
                 <br>
                 !Bienvenido a Estación Arcoiris Kids¡ en este documento se describe cómo el equipo de desarrollo ADSI 206 maneja y protege la información que recopilamos a través del sitio web realizado para Estación Arcoíris Kids. Cuando nos referimos a “nosotros”, “nos” o alguna expresión similar en esta política de privacidad, nos referimos al equipo de desarrollo ADSI 206 que controla y es responsable de sus datos.

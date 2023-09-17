@@ -5,7 +5,7 @@
         <div class="max-w-5xl mx-auto">
             <h1 class="text-4xl font-semibold text-gray-900">Términos y condiciones</h1>
             <p class="mt-6">
-                Fecha de entrada en vigor: xx/xx/xxxx.
+                Fecha de entrada en vigor: 17/09/2023.
                 <br>
                 <br>
                 A continuación, se presentan los términos y condiciones sujetos al uso de la página web Estación Arcoiris Kids, una empresa dedicada al alquiler de inflables y demás servicios de recreación infantil en fiestas y eventos. Al acceder y utilizar la página, aceptas estar sujeto a estos términos y condiciones, si no se está de acuerdo con alguna parte de los términos aquí presentados se recomienda no hacer uso de la página web.
