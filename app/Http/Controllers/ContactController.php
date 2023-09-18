@@ -17,7 +17,7 @@ class ContactController extends Controller
             "phone" => $request->phone,
             "message" => $request->message,
         );
-        Mail::to($request->email)->send(new ContactanosMailable($message));
+        Mail::to('info@arcoiris-kids.shop')->send(new ContactanosMailable($message));
 
         return redirect()->back();
     }

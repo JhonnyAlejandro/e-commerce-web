@@ -1,7 +1,7 @@
 <div class="hidden xl:fixed xl:inset-y-0 xl:flex xl:flex-col xl:w-72">
     <div class="flex flex-col grow gap-y-5 px-6 bg-white border-r border-gray-200">
         <div class="flex shrink-0 items-center h-16">
-            LOGO
+            <img src="{{asset('images/logo.png')}}" width="100px">
         </div>
         <x-vertical-navigation />
         <div class="-mx-6" for="navbarDropdown">
@@ -25,7 +25,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
-            <div>LOGO</div>
+            <div> <img src="{{asset('images/logo.png')}}" width="50px"></div>
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{route('profile.show')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
             <button class="text-gray-700 hover:text-gray-900">
                 <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-8 h-8">

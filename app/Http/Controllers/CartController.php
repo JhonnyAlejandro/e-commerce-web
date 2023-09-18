@@ -48,7 +48,7 @@ class CartController extends Controller
         }
 
             // Obtener las tasas de cambio desde Open Exchange Rates
-            $apiKey = 'eb29fc0e41604e53a429414be344459c'; // Reemplaza con tu API Key
+            $apiKey = '81f2d49670074de3a9d8f6ac8b972d8b'; // Reemplaza con tu API Key
             //base Currency =   Moneda Base
             //target currency = Moneda objetivo
             $baseCurrency = 'USD'; // Dólar estadounidense

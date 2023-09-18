@@ -11,7 +11,7 @@
             <div class="relative pt-32 px-6 pb-20 xl:static xl:py-48 xl:px-8">
                 <div class="max-w-xl mx-auto xl:max-w-lg xl:mx-0">
                     <div class="absolute inset-y-0 left-0 -z-10 overflow-hidden w-full bg-gray-100 border-gray-900/[0.1] border-r-2 xl:w-1/2"></div>
-                    <h2 class="text-4xl font-semibold text-gray-900">Contactanos</h2>
+                    <h2 class="text-4xl font-semibold text-gray-900">Contáctanos</h2>
                     <p class="mt-6 text-xl text-gray-700">
                         Vive la experiencia de las atracciones infantiles más increíbles de Colombia. Escribenos y estaremos complacidos en atender todas tus inquietudes.
                     </p>
@@ -45,7 +45,7 @@
                                 </svg>
                             </dt>
                             <dd>
-                                <a href="mailto:erika.cuaran@correounivalle.edu.co" class="hover:text-gray-900">erika.cuaran@correounivalle.edu.co</a>
+                                <a href="info@arcoiris-kids.shop" class="hover:text-gray-900">info@arcoiris-kids.shop</a>
                             </dd>
                         </div>
                     </dl>
