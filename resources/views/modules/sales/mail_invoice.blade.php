@@ -7,9 +7,8 @@
     <title>Factura</title>
 </head>
 
-<body style="font-family: Arial, sans-serif; background-image: url('{{ asset('images/factura/fondo.jpg') }}'); background-size: 100% 100%;">
+<body style="background-color: rgb(189, 187, 187);">
     <div style="background-color: white; margin: 0 auto; max-width: 500px; padding: 50px; position: relative; border-radius: 10px;">
-        <div style="background-image: url('{{ asset('images/factura/arcoiris.png') }}'); position: absolute; left: 50%; transform: translateX(-50%); top: -8px; width: 35%; height: 40px;"></div>
         <div style="text-align: center; padding: 20px;">
             <strong style="font-size: 24px; ">INFLA TU DIVERSION CON NOSOTROS. CALI, COLOMBIA</strong>
         </div>
@@ -175,14 +174,12 @@
 
             <div style="height: 4px; background: linear-gradient(to right, #00f, #800080, #ff69b4); margin-top: 35px; border-radius: 4px;"></div>
 
-            <div style="display: flex; flex-direction: row; padding-top:45px; padding-bottom: 2px;">
+            <div style="display: flex; justify-content: center; flex-direction: row; padding-top:45px; padding-bottom: 2px; margin-botton: 25px;">
                 <div style="flex-basis: 50%; margin-right: 32px;">
                     <p style="font-size: 16px; text-align: center;"><strong>ARCOIRIS KIDS</strong></p>
                     <div style="font-size: 14px; text-align: center;">Diversion y entretenimiento</div>
                 </div>
-                <div style="flex-basis: 50%; text-align: center;">
-                    <img src="{{ asset('images/factura/gracias.jpeg') }}" width="200" height="200" style="max-width: 100%; height: auto;">
-                </div>
+                
             </div>
 
             <a href="{{ route('home') }}"

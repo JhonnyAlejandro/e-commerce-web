@@ -66,7 +66,7 @@
                         <a href="{{ route('register') }}" class="py-2 px-3 text-lg font-semibold text-white text-center bg-indigo-600 rounded-md hover:bg-indigo-500">Registrarse</a>
                     </div>
                 @else
-                    <a href="{{ url('/dashboard') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900">Mi cuenta</a>
+                    <a href="{{ url('/dashboard') }}" class="block p-2 text-lg font-medium leading-7 text-gray-700 hover:text-gray-900 @if (Route::currentRouteName() != 'procesar.orden') disable @endif">Mi cuenta</a>
                 @endif
             </div>
         </div>
