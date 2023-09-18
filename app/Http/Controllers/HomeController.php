@@ -16,6 +16,7 @@ class HomeController extends Controller
             ->where('products.state', 1)
             ->where('categories.state', 1)
             ->where('references.state', 1)
+            ->where('discount', '>' , 0)
             ->take(4)
             ->get();
 

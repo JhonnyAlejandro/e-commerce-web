@@ -96,7 +96,7 @@
     <section>
         <div class="max-w-7xl mx-auto py-24 px-4 md:py-32 md:px-6 xl:px-8 xl:pt-32">
             <div class="md:flex md:justify-between md:items-center ">
-                <h2 class="text-3xl font-semibold text-gray-900">Productos mas vendidos</h2>
+                <h2 class="text-3xl font-semibold text-gray-900">Productos con descuentos</h2>
                 <a href="{{ route('store') }}" class="hidden text-lg font-bold text-indigo-600 hover:text-indigo-500 md:flex md:items-center">
                     Ir a la tienda
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-4 h-4 ml-1">
