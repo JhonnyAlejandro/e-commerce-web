@@ -5,7 +5,7 @@
         <div class="pt-24 pb-6 border-gray-200 border-b-2">
             <div class="xl:flex xl:justify-between xl:items-center">
                 <h3 class="text-4xl font-semibold leading-7">Tienda</h3>
-                <div class="flex mt-4 xl:mt-0 xl:ml-4">
+                <div class="mt-4 xl:mt-0 xl:ml-4">
                     <div class="relative grow z-10">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3">
                             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-6 h-6 text-gray-400">
@@ -14,17 +14,12 @@
                         </div>
                         <x-input x-model="searchFilter" type="text" class="h-full pl-12 xl:w-96" placeholder="Buscar..." />
                     </div>
-                    <button class="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 md:ml-6 xl:hidden">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7">
-                            <path clip-rule="evenodd" fill-rule="evenodd" d="M3.792 2.938A49.069 49.069 0 0112 2.25c2.797 0 5.54.236 8.209.688a1.857 1.857 0 011.541 1.836v1.044a3 3 0 01-.879 2.121l-6.182 6.182a1.5 1.5 0 00-.439 1.061v2.927a3 3 0 01-1.658 2.684l-1.757.878A.75.75 0 019.75 21v-5.818a1.5 1.5 0 00-.44-1.06L3.13 7.938a3 3 0 01-.879-2.121V4.774c0-.897.64-1.683 1.542-1.836z"></path>
-                        </svg>
-                    </button>
                 </div>
             </div>
         </div>
         <section class="pt-6 pb-32">
             <div class="grid grid-cols-1 gap-x-8 gap-y-10 xl:grid-cols-4">
-                <div class="hidden xl:block">
+                <div class="-mt-6 xl:mt-0">
                     <div x-data="{ open: false, selectedCategories: [] }" class="py-6 border-gray-200 border-b-2">
                         <h3 class="flow-root -my-3">
                             <button x-on:click="open =! open" type="button" class="flex justify-between items-center w-full py-3 text-gray-400 hover:text-gray-500">
@@ -36,7 +31,7 @@
                                 </span>
                             </button>
                         </h3>
-                        <div x-show="open" x-transition.origin.top class="pt-6 space-y-4" style="display: none;">
+                        <div x-show="open" x-transition.origin.left class="pt-6 space-y-4" style="display: none;">
                             @foreach ($categories as $category)
                                 <div class="flex items-center">
                                     <x-checkbox x-model="selectedCategories" id="{{ $category->name }}" name="category" value="{{ $category->name }}" />
@@ -56,7 +51,7 @@
                                 </span>
                             </button>
                         </h3>
-                        <div x-show="open" x-transition.origin.top class="pt-6 space-y-4" style="display: none;">
+                        <div x-show="open" x-transition.origin.left class="pt-6 space-y-4" style="display: none;">
                             <div class="flex items-center">
                                 <x-checkbox x-model="selectedServices" id="sale" name="service" value="1" />
                                 <x-label for="sale" class="ml-3" value="{{ __('Venta') }}" />
@@ -78,7 +73,7 @@
                                 </span>
                             </button>
                         </h3>
-                        <div x-show="open" x-transition.origin.top class="pt-6 space-y-4" style="display: none;">
+                        <div x-show="open" x-transition.origin.left class="pt-6 space-y-4" style="display: none;">
                             <div class="flex items-center">
                                 <x-checkbox x-model="selectedDiscount" id="discount" name="discount" />
                                 <x-label for="discount" class="ml-3" value="{{ __('Descuentos') }}" />
